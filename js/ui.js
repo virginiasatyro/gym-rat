@@ -38,18 +38,88 @@ const UI = (() => {
     const list = document.createElement("div");
     list.className = "exercise-list";
 
-    day.exercises.forEach((exercise) => {
-      list.appendChild(renderExercise(activeWorkout.id, day.id, exercise, false, actions, allWorkouts));
+    buildExerciseGroups(day.exercises).forEach((group) => {
+      list.appendChild(renderExerciseGroup(activeWorkout.id, day.id, group, false, actions, allWorkouts));
     });
 
     container.appendChild(list);
   }
 
+  function renderExerciseGroup(workoutId, dayId, group, readonly, actions, allWorkouts = []) {
+    if (group.length === 1 && group[0].type === "rest") {
+      return renderExercise(workoutId, dayId, group[0], readonly, actions, allWorkouts);
+    }
+
+    if (group.length === 1) {
+      return renderExercise(workoutId, dayId, group[0], readonly, actions, allWorkouts);
+    }
+
+    const wrapper = document.createElement("section");
+    wrapper.className = "conjugated-group";
+
+    const title = document.createElement("h4");
+    title.className = "conjugated-group-title";
+    title.textContent = "Treino conjugado";
+    wrapper.appendChild(title);
+
+    const items = document.createElement("div");
+    items.className = "conjugated-group-items";
+
+    group.forEach((exercise) => {
+      const item = document.createElement("div");
+      item.className = "conjugated-group-item";
+      item.appendChild(renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts));
+      items.appendChild(item);
+    });
+
+    wrapper.appendChild(items);
+    return wrapper;
+  }
+
+  function buildExerciseGroups(exercises = []) {
+    const groups = [];
+    let currentGroup = [];
+
+    exercises.forEach((exercise) => {
+      if (exercise.type === "rest") {
+        if (currentGroup.length) {
+          groups.push(currentGroup);
+          currentGroup = [];
+        }
+        groups.push([exercise]);
+        return;
+      }
+
+      currentGroup.push(exercise);
+    });
+
+    if (currentGroup.length) {
+      groups.push(currentGroup);
+    }
+
+    return groups;
+  }
+
   function renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts = []) {
+    if (exercise.type === "rest") {
+      const card = document.createElement("article");
+      card.className = "exercise-card rest-card";
+      card.innerHTML = `
+        <div class="exercise-header">
+          <div>
+            <h3 class="exercise-title">${escapeHtml(exercise.name)}</h3>
+            <p class="exercise-meta">Descanso de ${escapeHtml(exercise.duration)} s</p>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
     const card = document.createElement("article");
     card.className = "exercise-card";
 
     const lastWeight = Workouts.getLastWeight(exercise);
+    const restLabel = exercise.rest != null && exercise.rest !== "" ? ` · Descanso: ${exercise.rest} s` : "";
     const stats = Workouts.getStats(exercise);
     const prCategories = Workouts.getPrCategories(exercise, allWorkouts);
     const trend = Workouts.getWeightTrend(exercise);
@@ -60,7 +130,7 @@ const UI = (() => {
       <div class="exercise-header">
         <div>
           <h3 class="exercise-title">${escapeHtml(exercise.name)}</h3>
-          <p class="exercise-meta">${exercise.sets}x${escapeHtml(exercise.reps)} · Descanso: ${exercise.rest} s</p>
+          <p class="exercise-meta">${exercise.sets}x${escapeHtml(exercise.reps)}${restLabel}</p>
         </div>
         <div class="last-weight">
           <span>Ultimo peso</span>
@@ -136,27 +206,12 @@ const UI = (() => {
     });
     actionsRow.appendChild(historyButton);
 
-    // Descanso pausado por enquanto.
-    // if (!readonly) {
-    //   const timerButton = document.createElement("button");
-    //   timerButton.className = "timer-button";
-    //   timerButton.type = "button";
-    //   timerButton.textContent = "Iniciar descanso";
-    //   timerButton.addEventListener("click", () => startTimer(timerId, exercise.rest));
-    //   actionsRow.appendChild(timerButton);
-    // }
-
     card.appendChild(actionsRow);
-
-    // const timerStatus = document.createElement("p");
-    // timerStatus.className = "timer-status";
-    // timerStatus.id = timerId;
-    // card.appendChild(timerStatus);
 
     const history = document.createElement("div");
     history.className = "history";
     history.id = historyId;
-    history.appendChild(renderHistory(exercise.history));
+    history.appendChild(renderHistory(exercise.history || []));
     card.appendChild(history);
 
     return card;
@@ -216,10 +271,10 @@ const UI = (() => {
         dayBlock.className = "old-day";
         dayBlock.innerHTML = `<h3>${escapeHtml(day.name)}</h3>`;
 
-        day.exercises.forEach((exercise) => {
+        buildExerciseGroups(day.exercises).forEach((group) => {
           const item = document.createElement("div");
           item.className = "old-exercise";
-          item.appendChild(renderExercise(workout.id, day.id, exercise, true, {}, allWorkouts));
+          item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, {}, allWorkouts));
           dayBlock.appendChild(item);
         });
 

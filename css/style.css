@@ -49,7 +49,7 @@ input {
   padding: 28px 18px 22px;
 }
 
-.app-header > div,
+.app-header>div,
 .app-shell {
   width: min(920px, 100%);
   margin: 0 auto;
@@ -240,8 +240,68 @@ body.dark-theme .day-c {
   box-shadow: var(--shadow);
 }
 
+.conjugated-group {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.conjugated-group-title {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.conjugated-group-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.conjugated-group-items::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  bottom: 18px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--line));
+  border-radius: 999px;
+}
+
+.conjugated-group-item {
+  position: relative;
+  padding-left: 34px;
+}
+
+.conjugated-group-item::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 24px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.conjugated-group-item .exercise-card {
+  height: 100%;
+}
+
 .exercise-card {
   padding: 16px;
+}
+
+.rest-card {
+  border-style: dashed;
+  background: var(--surface-muted);
 }
 
 .exercise-header {

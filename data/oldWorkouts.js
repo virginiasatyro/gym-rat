@@ -1,7 +1,7 @@
 window.OLD_WORKOUTS = [
   {
     id: 2,
-    name: "Treino Marco 2026",
+    name: "Treino Maio-Junho 2026",
     active: false,
     workouts: [
       {
@@ -9,15 +9,44 @@ window.OLD_WORKOUTS = [
         name: "Treino A",
         exercises: [
           {
-            id: 1,
-            name: "Supino",
-            sets: 4,
-            reps: "10",
-            rest: 90,
-            history: [
-              { date: "2026-03-12", weight: 36 },
-              { date: "2026-03-19", weight: 38 }
-            ]
+            name: "Flexão de Braços",
+            sets: 3,
+            reps: "20"
+          },
+          {
+            name: "Tríceps na Polia com Corda",
+            sets: 3,
+            reps: "20"
+          },
+          {
+            name: "Prancha Dinâmica",
+            sets: 3,
+            reps: "20"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 40
+          },
+          {
+            name: "Remada Baixa na Polia Baixa (Pegaga Neutra)",
+            sets: 3,
+            reps: "20"
+          },
+          {
+            name: "Rosca Inversa com Halteres",
+            sets: 3,
+            reps: "20"
+          },
+          {
+            name: "Abdominal Remador",
+            sets: 3,
+            reps: "20"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 40
           }
         ]
       },

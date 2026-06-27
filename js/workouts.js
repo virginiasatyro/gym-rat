@@ -34,12 +34,15 @@ const Workouts = (() => {
   }
 
   function getLastWeight(exercise) {
-    if (!exercise.history.length) return null;
-    return exercise.history[exercise.history.length - 1].weight;
+    const history = Array.isArray(exercise.history) ? exercise.history : [];
+    if (!history.length) return null;
+    return history[history.length - 1].weight;
   }
 
   function getStats(exercise) {
-    if (!exercise.history.length) {
+    const history = Array.isArray(exercise.history) ? exercise.history : [];
+
+    if (!history.length) {
       return {
         count: 0,
         average: null,
@@ -47,7 +50,7 @@ const Workouts = (() => {
       };
     }
 
-    const weights = exercise.history.map((entry) => Number(entry.weight));
+    const weights = history.map((entry) => Number(entry.weight));
     const total = weights.reduce((sum, weight) => sum + weight, 0);
 
     return {
@@ -126,15 +129,17 @@ const Workouts = (() => {
   }
 
   function getWeightTrend(exercise) {
-    if (exercise.history.length < 2) {
+    const history = Array.isArray(exercise.history) ? exercise.history : [];
+
+    if (history.length < 2) {
       return {
         label: "Sem comparacao",
         type: "neutral"
       };
     }
 
-    const previous = Number(exercise.history[exercise.history.length - 2].weight);
-    const current = Number(exercise.history[exercise.history.length - 1].weight);
+    const previous = Number(history[history.length - 2].weight);
+    const current = Number(history[history.length - 1].weight);
     const difference = current - previous;
 
     if (difference > 0) {
