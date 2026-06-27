@@ -51,6 +51,9 @@ const UI = (() => {
     card.className = "exercise-card";
 
     const lastWeight = Workouts.getLastWeight(exercise);
+    const stats = Workouts.getStats(exercise);
+    const prCategories = Workouts.getPrCategories(exercise);
+    const trend = Workouts.getWeightTrend(exercise);
     const historyId = `history-${workoutId}-${dayId}-${exercise.id}`;
     const timerId = `timer-${workoutId}-${dayId}-${exercise.id}`;
 
@@ -62,9 +65,35 @@ const UI = (() => {
         </div>
         <div class="last-weight">
           <span>Ultimo peso</span>
-          <strong>${lastWeight === null ? "-" : `${lastWeight} kg`}</strong>
+          <strong>${lastWeight === null ? "-" : `${Workouts.formatWeight(lastWeight)} kg`}</strong>
         </div>
       </div>
+      <dl class="exercise-stats">
+        <div>
+          <dt>PR &lt;8</dt>
+          <dd>${prCategories.low === null ? "-" : `${Workouts.formatWeight(prCategories.low)} kg`}</dd>
+        </div>
+        <div>
+          <dt>PR 8-12</dt>
+          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatWeight(prCategories.medium)} kg`}</dd>
+        </div>
+        <div>
+          <dt>PR &gt;12</dt>
+          <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} kg`}</dd>
+        </div>
+        <div>
+          <dt>Variacao</dt>
+          <dd class="trend trend-${trend.type}">${escapeHtml(trend.label)}</dd>
+        </div>
+        <div>
+          <dt>Media</dt>
+          <dd>${stats.average === null ? "-" : `${Workouts.formatWeight(stats.average)} kg`}</dd>
+        </div>
+        <div>
+          <dt>Registros</dt>
+          <dd>${stats.count}</dd>
+        </div>
+      </dl>
     `;
 
     if (!readonly) {
@@ -147,7 +176,7 @@ const UI = (() => {
 
     history.forEach((entry) => {
       const item = document.createElement("li");
-      item.innerHTML = `<span>${Workouts.formatDate(entry.date)}</span><strong>${entry.weight} kg</strong>`;
+      item.innerHTML = `<span>${Workouts.formatDate(entry.date)}</span><strong>${Workouts.formatWeight(entry.weight)} kg</strong>`;
       list.appendChild(item);
     });
 

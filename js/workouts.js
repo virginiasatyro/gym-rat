@@ -38,6 +38,91 @@ const Workouts = (() => {
     return exercise.history[exercise.history.length - 1].weight;
   }
 
+  function getStats(exercise) {
+    if (!exercise.history.length) {
+      return {
+        count: 0,
+        average: null,
+        pr: null
+      };
+    }
+
+    const weights = exercise.history.map((entry) => Number(entry.weight));
+    const total = weights.reduce((sum, weight) => sum + weight, 0);
+
+    return {
+      count: weights.length,
+      average: total / weights.length,
+      pr: Math.max(...weights)
+    };
+  }
+
+  function getPrCategories(exercise) {
+    const stats = getStats(exercise);
+    const category = getRepCategory(exercise.reps);
+
+    return {
+      low: category === "low" ? stats.pr : null,
+      medium: category === "medium" ? stats.pr : null,
+      high: category === "high" ? stats.pr : null
+    };
+  }
+
+  function getRepCategory(reps) {
+    const repValue = getRepValue(reps);
+
+    if (repValue === null) return null;
+    if (repValue < 8) return "low";
+    if (repValue <= 12) return "medium";
+    return "high";
+  }
+
+  function getRepValue(reps) {
+    const values = String(reps).match(/\d+(\.\d+)?/g);
+    if (!values) return null;
+
+    const numbers = values.map(Number);
+    const total = numbers.reduce((sum, number) => sum + number, 0);
+    return total / numbers.length;
+  }
+
+  function getWeightTrend(exercise) {
+    if (exercise.history.length < 2) {
+      return {
+        label: "Sem comparacao",
+        type: "neutral"
+      };
+    }
+
+    const previous = Number(exercise.history[exercise.history.length - 2].weight);
+    const current = Number(exercise.history[exercise.history.length - 1].weight);
+    const difference = current - previous;
+
+    if (difference > 0) {
+      return {
+        label: `+${formatWeight(difference)} kg`,
+        type: "up"
+      };
+    }
+
+    if (difference < 0) {
+      return {
+        label: `${formatWeight(difference)} kg`,
+        type: "down"
+      };
+    }
+
+    return {
+      label: "Igual",
+      type: "neutral"
+    };
+  }
+
+  function formatWeight(weight) {
+    const value = Number(weight);
+    return Number.isInteger(value) ? String(value) : value.toFixed(1);
+  }
+
   function formatDate(date) {
     const [year, month, day] = date.split("-");
     return `${day}/${month}`;
@@ -49,6 +134,10 @@ const Workouts = (() => {
     getActive,
     getLastWeight,
     getOld,
+    getPrCategories,
+    getStats,
+    getWeightTrend,
+    formatWeight,
     formatDate
   };
 })();
