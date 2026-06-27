@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gym Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Treino Atual</p>
+        <h1 id="active-workout-name">Gym Tracker</h1>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="current-section" aria-labelledby="active-workout-name">
+        <nav id="day-tabs" class="day-tabs" aria-label="Dias do treino"></nav>
+        <div id="current-day" class="workout-day"></div>
+      </section>
+
+      <section class="old-section" aria-labelledby="old-workouts-title">
+        <h2 id="old-workouts-title">Treinos Antigos</h2>
+        <div id="old-workouts" class="old-workouts"></div>
+      </section>
+    </main>
+
+    <script src="data/defaultWorkout.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/workouts.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
