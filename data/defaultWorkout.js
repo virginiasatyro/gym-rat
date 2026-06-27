@@ -1,3 +1,4 @@
+window.DEFAULT_WORKOUTS_VERSION = 20260627;
 window.DEFAULT_WORKOUTS = [
   {
     id: 1,
