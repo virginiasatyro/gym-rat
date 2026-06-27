@@ -49,10 +49,25 @@ const Backup = (() => {
 
     if (!activeWorkout) return null;
 
-    return {
-      ...Storage.clone(activeWorkout),
-      active: false
-    };
+    const oldWorkout = Storage.clone(activeWorkout);
+    oldWorkout.active = false;
+
+    oldWorkout.workouts.forEach((day) => {
+      day.exercises.forEach((exercise) => {
+        if (exercise.type === "rest") return;
+
+        const history = Array.isArray(exercise.history) ? exercise.history : [];
+        const lastEntry = history[history.length - 1];
+        const lastWeight = Workouts.getLastWeight(exercise);
+
+        if (lastWeight !== null) {
+          exercise.lastWeight = lastWeight;
+          exercise.lastWeightDate = lastEntry ? lastEntry.date : "";
+        }
+      });
+    });
+
+    return oldWorkout;
   }
 
   function parseBackup(value) {

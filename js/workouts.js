@@ -25,24 +25,35 @@ const Workouts = (() => {
     const exercise = findExercise(workouts, workoutId, dayId, exerciseId);
     if (!exercise) return workouts;
 
+    if (!Array.isArray(exercise.history)) {
+      exercise.history = [];
+    }
+
     exercise.history.push({
       date: new Date().toISOString().slice(0, 10),
       weight
     });
+    exercise.lastWeight = weight;
 
     return workouts;
   }
 
   function getLastWeight(exercise) {
-    const history = Array.isArray(exercise.history) ? exercise.history : [];
-    if (!history.length) return null;
-    return history[history.length - 1].weight;
+    const lastWeight = Number(exercise.lastWeight);
+
+    if (Number.isFinite(lastWeight)) {
+      return lastWeight;
+    }
+
+    const entries = getWeightEntries(exercise);
+    if (!entries.length) return null;
+    return entries[entries.length - 1].weight;
   }
 
   function getStats(exercise) {
-    const history = Array.isArray(exercise.history) ? exercise.history : [];
+    const entries = getWeightEntries(exercise);
 
-    if (!history.length) {
+    if (!entries.length) {
       return {
         count: 0,
         average: null,
@@ -50,7 +61,7 @@ const Workouts = (() => {
       };
     }
 
-    const weights = history.map((entry) => Number(entry.weight));
+    const weights = entries.map((entry) => Number(entry.weight));
     const total = weights.reduce((sum, weight) => sum + weight, 0);
 
     return {
@@ -129,7 +140,7 @@ const Workouts = (() => {
   }
 
   function getWeightTrend(exercise) {
-    const history = Array.isArray(exercise.history) ? exercise.history : [];
+    const history = getWeightEntries(exercise);
 
     if (history.length < 2) {
       return {
@@ -165,6 +176,21 @@ const Workouts = (() => {
   function formatWeight(weight) {
     const value = Number(weight);
     return Number.isInteger(value) ? String(value) : value.toFixed(1);
+  }
+
+  function getWeightEntries(exercise) {
+    const history = Array.isArray(exercise.history) ? [...exercise.history] : [];
+    const lastWeight = Number(exercise.lastWeight);
+    const lastHistoryWeight = history.length ? Number(history[history.length - 1].weight) : null;
+
+    if (Number.isFinite(lastWeight) && lastWeight !== lastHistoryWeight) {
+      history.push({
+        date: exercise.lastWeightDate || "",
+        weight: lastWeight
+      });
+    }
+
+    return history.filter((entry) => Number.isFinite(Number(entry.weight)));
   }
 
   function formatDate(date) {
