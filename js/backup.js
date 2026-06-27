@@ -56,6 +56,8 @@ const Backup = (() => {
       day.exercises.forEach((exercise) => {
         if (exercise.type === "rest") return;
 
+        exercise.exerciseId = exercise.exerciseId || Workouts.getStableExerciseId(exercise);
+
         const history = Array.isArray(exercise.history) ? exercise.history : [];
         const lastEntry = history[history.length - 1];
         const lastWeight = Workouts.getLastWeight(exercise);

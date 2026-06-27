@@ -97,13 +97,17 @@ const Workouts = (() => {
   }
 
   function getMatchingExercises(workouts, exercise) {
+    const stableId = getStableExerciseId(exercise);
     const exerciseName = normalizeName(exercise.name);
     const matches = [];
 
     workouts.forEach((workout) => {
       (workout.workouts || []).forEach((day) => {
         (day.exercises || []).forEach((candidate) => {
-          if (normalizeName(candidate.name) === exerciseName) {
+          const sameStableId = stableId && getStableExerciseId(candidate) === stableId;
+          const sameNameWithoutStableId = !stableId && normalizeName(candidate.name) === exerciseName;
+
+          if (sameStableId || sameNameWithoutStableId) {
             matches.push(candidate);
           }
         });
@@ -119,6 +123,11 @@ const Workouts = (() => {
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase()
       .trim();
+  }
+
+  function getStableExerciseId(exercise) {
+    if (exercise.exerciseId) return exercise.exerciseId;
+    return window.EXERCISE_CATALOG_BY_NAME?.[normalizeName(exercise.name)] || null;
   }
 
   function getRepCategory(reps) {
@@ -205,6 +214,7 @@ const Workouts = (() => {
     getLastWeight,
     getOld,
     getPrCategories,
+    getStableExerciseId,
     getStats,
     getWeightTrend,
     formatWeight,

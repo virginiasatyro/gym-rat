@@ -9,17 +9,20 @@ window.OLD_WORKOUTS = [
         name: "Treino A",
         exercises: [
           {
-            name: "Flexão de Braços",
+            exerciseId: "flexao-bracos",
+            name: "Flexao de Bracos",
             sets: 3,
             reps: "20"
           },
           {
-            name: "Tríceps na Polia com Corda",
+            exerciseId: "triceps-polia-corda",
+            name: "Triceps na Polia com Corda",
             sets: 3,
             reps: "20"
           },
           {
-            name: "Prancha Dinâmica",
+            exerciseId: "prancha-dinamica",
+            name: "Prancha Dinamica",
             sets: 3,
             reps: "20"
           },
@@ -29,16 +32,19 @@ window.OLD_WORKOUTS = [
             duration: 40
           },
           {
-            name: "Remada Baixa na Polia Baixa (Pegaga Neutra)",
+            exerciseId: "remada-baixa-polia-neutra",
+            name: "Remada Baixa na Polia Baixa (Pegada Neutra)",
             sets: 3,
             reps: "20"
           },
           {
+            exerciseId: "rosca-inversa-halteres",
             name: "Rosca Inversa com Halteres",
             sets: 3,
             reps: "20"
           },
           {
+            exerciseId: "abdominal-remador",
             name: "Abdominal Remador",
             sets: 3,
             reps: "20"
@@ -49,16 +55,19 @@ window.OLD_WORKOUTS = [
             duration: 40
           },
           {
-            name: "Flexão Nórdica",
+            exerciseId: "flexao-nordica",
+            name: "Flexao Nordica",
             sets: 3,
             reps: "20"
           },
           {
-            name: "Brigde Fit Ball III",
+            exerciseId: "bridge-fit-ball-iii",
+            name: "Bridge Fit Ball III",
             sets: 3,
             reps: "40 segundos"
           },
           {
+            exerciseId: "abdominal-canivete",
             name: "Abdominal Canivete",
             sets: 3,
             reps: "20"
@@ -69,16 +78,19 @@ window.OLD_WORKOUTS = [
             duration: 40
           },
           {
+            exerciseId: "cadeira-extensora",
             name: "Cadeira Extensora",
             sets: 3,
             reps: "20"
           },
           {
-            name: "Agachamento Isométrico",
+            exerciseId: "agachamento-isometrico",
+            name: "Agachamento Isometrico",
             sets: 3,
             reps: "20"
           },
           {
+            exerciseId: "abdominal-escalador",
             name: "Abdominal Escalador",
             sets: 3,
             reps: "40"
@@ -87,7 +99,7 @@ window.OLD_WORKOUTS = [
             type: "rest",
             name: "Descanso",
             duration: 40
-          } 
+          }
         ]
       },
       {
@@ -95,68 +107,76 @@ window.OLD_WORKOUTS = [
         name: "Treino B",
         exercises: [
           {
+            id: 1,
+            exerciseId: "elevacao-frontal-halteres",
+            name: "Elevacao Frontal Alternada",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            lastWeight: 6
+          },
+          {
             id: 2,
-            name: "Elevação Frontal Alternada",
+            exerciseId: "elevacao-frontal-halteres",
+            name: "Elevacao Frontal Unilateral com Halteres",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 6,
+            lastWeight: 8
           },
           {
             id: 3,
-            name: "Elevação Frontal Unilateral com Halteres",
-            sets: 3,
-            reps: "8",
-            rest: 60,
-            lastWeight: 8,
-          },
-          {
-            id: 3,
+            exerciseId: "remada-alta-polia-baixa-barra-reta",
             name: "Remada Alta na Polia Baixa com Barra Reta",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 40,
+            lastWeight: 40
           },
           {
-            id: 3,
-            name: "Elevação de Quadril na Máquina",
+            id: 4,
+            exerciseId: "elevacao-quadril-maquina",
+            name: "Elevacao de Quadril na Maquina",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 45,
+            lastWeight: 45
           },
           {
-            id: 3,
-            name: "Abdução de Quadril Máquina",
+            id: 5,
+            exerciseId: "abducao-quadril-maquina",
+            name: "Abducao de Quadril Maquina",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 75,
+            lastWeight: 75
           },
           {
-            id: 3,
+            id: 6,
+            exerciseId: "mesa-flexora-unilateral",
             name: "Mesa Flexora Unilateral",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 40,
+            lastWeight: 40
           },
           {
-            id: 3,
-            name: "Adução de Quadril Máquina",
+            id: 7,
+            exerciseId: "aducao-quadril-maquina",
+            name: "Aducao de Quadril Maquina",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 60,
+            lastWeight: 60
           },
           {
-            id: 3,
-            name: "Extensão de Panturrilha",
+            id: 8,
+            exerciseId: "extensao-panturrilha",
+            name: "Extensao de Panturrilha",
             sets: 3,
             reps: "8",
             rest: 60,
-            lastWeight: 60,
+            lastWeight: 60
           }
         ]
       },
@@ -165,7 +185,8 @@ window.OLD_WORKOUTS = [
         name: "Treino C",
         exercises: [
           {
-            id: 3,
+            id: 1,
+            exerciseId: "puxada-frontal",
             name: "Puxada Frontal",
             sets: 4,
             reps: "10",
@@ -191,6 +212,7 @@ window.OLD_WORKOUTS = [
         exercises: [
           {
             id: 1,
+            exerciseId: "supino-inclinado",
             name: "Supino Inclinado",
             sets: 3,
             reps: "12",
@@ -208,7 +230,8 @@ window.OLD_WORKOUTS = [
         name: "Treino B",
         exercises: [
           {
-            id: 2,
+            id: 1,
+            exerciseId: "cadeira-extensora",
             name: "Cadeira Extensora",
             sets: 3,
             reps: "12",
@@ -226,7 +249,8 @@ window.OLD_WORKOUTS = [
         name: "Treino C",
         exercises: [
           {
-            id: 3,
+            id: 1,
+            exerciseId: "remada-curvada",
             name: "Remada Curvada",
             sets: 3,
             reps: "10",

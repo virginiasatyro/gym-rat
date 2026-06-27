@@ -46,15 +46,37 @@ const Storage = (() => {
 
   function mergeWithDefaults(savedWorkouts, defaultWorkouts) {
     const merged = clone(savedWorkouts);
-    const savedIds = new Set(merged.map((workout) => workout.id));
+    const savedById = new Map(merged.map((workout) => [workout.id, workout]));
 
     defaultWorkouts.forEach((defaultWorkout) => {
-      if (!savedIds.has(defaultWorkout.id)) {
+      const savedWorkout = savedById.get(defaultWorkout.id);
+
+      if (!savedWorkout) {
         merged.push(clone(defaultWorkout));
+        return;
       }
+
+      hydrateExerciseMetadata(savedWorkout, defaultWorkout);
     });
 
     return merged;
+  }
+
+  function hydrateExerciseMetadata(savedWorkout, defaultWorkout) {
+    (defaultWorkout.workouts || []).forEach((defaultDay) => {
+      const savedDay = (savedWorkout.workouts || []).find((day) => day.id === defaultDay.id);
+      if (!savedDay) return;
+
+      (defaultDay.exercises || []).forEach((defaultExercise, index) => {
+        const savedExercise = (savedDay.exercises || [])[index];
+
+        if (!savedExercise || savedExercise.type === "rest") return;
+
+        if (!savedExercise.exerciseId && defaultExercise.exerciseId) {
+          savedExercise.exerciseId = defaultExercise.exerciseId;
+        }
+      });
+    });
   }
 
   function save(workouts) {

@@ -46,12 +46,16 @@ const UI = (() => {
   }
 
   function renderExerciseGroup(workoutId, dayId, group, readonly, actions, allWorkouts = []) {
-    if (group.length === 1 && group[0].type === "rest") {
-      return renderExercise(workoutId, dayId, group[0], readonly, actions, allWorkouts);
-    }
+    const exercises = group.exercises || [];
 
-    if (group.length === 1) {
-      return renderExercise(workoutId, dayId, group[0], readonly, actions, allWorkouts);
+    if (!isConjugatedGroup(group)) {
+      const fragment = document.createDocumentFragment();
+
+      exercises.forEach((exercise) => {
+        fragment.appendChild(renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts));
+      });
+
+      return fragment;
     }
 
     const wrapper = document.createElement("section");
@@ -65,7 +69,7 @@ const UI = (() => {
     const items = document.createElement("div");
     items.className = "conjugated-group-items";
 
-    group.forEach((exercise) => {
+    exercises.forEach((exercise) => {
       const item = document.createElement("div");
       item.className = "conjugated-group-item";
       item.appendChild(renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts));
@@ -83,10 +87,12 @@ const UI = (() => {
     exercises.forEach((exercise) => {
       if (exercise.type === "rest") {
         if (currentGroup.length) {
-          groups.push(currentGroup);
+          groups.push({
+            conjugated: currentGroup.length >= 2,
+            exercises: currentGroup
+          });
           currentGroup = [];
         }
-        groups.push([exercise]);
         return;
       }
 
@@ -94,10 +100,17 @@ const UI = (() => {
     });
 
     if (currentGroup.length) {
-      groups.push(currentGroup);
+      groups.push({
+        conjugated: false,
+        exercises: currentGroup
+      });
     }
 
     return groups;
+  }
+
+  function isConjugatedGroup(group = []) {
+    return Boolean(group.conjugated);
   }
 
   function renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts = []) {

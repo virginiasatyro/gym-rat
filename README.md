@@ -27,3 +27,9 @@ Na pagina principal:
 - `Exportar`: gera um backup completo com todos os treinos salvos no navegador.
 - `Exportar atual como antigo`: gera apenas o treino atual com `active: false`, pronto para copiar para `OLD_WORKOUTS` no futuro.
 - `Importar`: restaura um backup completo exportado anteriormente.
+
+## IDs de exercicios
+
+- `id`: identifica a ocorrencia do exercicio dentro de um treino/dia.
+- `exerciseId`: identifica o exercicio real e deve ser usado para PR e comparacoes entre treinos.
+- `data/exerciseCatalog.js`: catalogo central dos `exerciseId` e aliases de nomes antigos.
