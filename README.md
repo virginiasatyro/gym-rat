@@ -16,3 +16,6 @@ Aplicacao web simples para acompanhar treinos de academia.
 ## Como usar
 
 Abra o arquivo `index.html` no navegador ou publique o repositorio no GitHub Pages.
+
+- `index.html`: treino atual.
+- `old-workouts.html`: treinos antigos em modo somente leitura.

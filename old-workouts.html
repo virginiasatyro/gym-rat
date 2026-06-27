@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gym Tracker</title>
+    <title>Treinos Antigos - Gym Tracker</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <header class="app-header">
       <div class="header-content">
         <div>
-          <p class="eyebrow">Treino Atual</p>
-          <h1 id="active-workout-name">Gym Tracker</h1>
+          <p class="eyebrow">Historico</p>
+          <h1>Treinos Antigos</h1>
         </div>
         <div class="header-actions">
-          <a class="header-link" href="old-workouts.html">Antigos</a>
+          <a class="header-link" href="index.html">Atual</a>
           <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema">
             Escuro
           </button>
@@ -23,11 +23,10 @@
     </header>
 
     <main class="app-shell">
-      <section class="current-section" aria-labelledby="active-workout-name">
-        <nav id="day-tabs" class="day-tabs" aria-label="Dias do treino"></nav>
-        <div id="current-day" class="workout-day"></div>
+      <section class="old-section" aria-labelledby="old-workouts-title">
+        <h2 id="old-workouts-title">Treinos Antigos</h2>
+        <div id="old-workouts" class="old-workouts"></div>
       </section>
-
     </main>
 
     <script src="data/currentWorkout.js"></script>
@@ -36,6 +35,6 @@
     <script src="js/workouts.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/oldWorkoutsPage.js"></script>
   </body>
 </html>

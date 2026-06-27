@@ -1,5 +1,4 @@
 const App = (() => {
-  const themeKey = "gym-tracker-theme";
   const state = {
     workouts: Storage.load(),
     selectedDayId: "A"
@@ -8,7 +7,7 @@ const App = (() => {
   function init() {
     const activeWorkout = Workouts.getActive(state.workouts);
     state.selectedDayId = activeWorkout.workouts[0].id;
-    initTheme();
+    Theme.init();
     render();
   }
 
@@ -28,26 +27,6 @@ const App = (() => {
     state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, weight);
     Storage.save(state.workouts);
     render();
-  }
-
-  function initTheme() {
-    const savedTheme = localStorage.getItem(themeKey);
-    const useDark = savedTheme === "dark";
-    const button = document.getElementById("theme-toggle");
-
-    setTheme(useDark);
-
-    button.addEventListener("click", () => {
-      const nextUseDark = !document.body.classList.contains("dark-theme");
-      setTheme(nextUseDark);
-      localStorage.setItem(themeKey, nextUseDark ? "dark" : "light");
-    });
-  }
-
-  function setTheme(useDark) {
-    const button = document.getElementById("theme-toggle");
-    document.body.classList.toggle("dark-theme", useDark);
-    button.textContent = useDark ? "Claro" : "Escuro";
   }
 
   return {

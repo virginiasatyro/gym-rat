@@ -6,12 +6,20 @@ const Storage = (() => {
     return JSON.parse(JSON.stringify(value));
   }
 
+  function getDefaults() {
+    if (window.CURRENT_WORKOUT) {
+      return clone([window.CURRENT_WORKOUT, ...(window.OLD_WORKOUTS || [])]);
+    }
+
+    return clone(window.DEFAULT_WORKOUTS || []);
+  }
+
   function getCurrentVersion() {
     return window.DEFAULT_WORKOUTS_VERSION || 1;
   }
 
   function load() {
-    const defaults = clone(window.DEFAULT_WORKOUTS || []);
+    const defaults = getDefaults();
     const saved = localStorage.getItem(key);
     const savedVersion = localStorage.getItem(versionKey);
     const currentVersion = String(getCurrentVersion());

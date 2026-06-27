@@ -7,7 +7,6 @@ const UI = (() => {
 
     renderTabs(activeWorkout, state.selectedDayId, actions);
     renderCurrentDay(activeWorkout, state.selectedDayId, actions);
-    renderOldWorkouts(Workouts.getOld(state.workouts));
   }
 
   function renderTabs(activeWorkout, selectedDayId, actions) {
@@ -265,6 +264,7 @@ const UI = (() => {
   }
 
   return {
-    render
+    render,
+    renderOldWorkouts
   };
 })();
