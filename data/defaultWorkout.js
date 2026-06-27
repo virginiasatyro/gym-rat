@@ -1,7 +1,7 @@
 window.DEFAULT_WORKOUTS = [
   {
     id: 1,
-    name: "Treino Julho 2026",
+    name: "Treino Junho-Julho 2026",
     active: true,
     workouts: [
       {
@@ -10,32 +10,83 @@ window.DEFAULT_WORKOUTS = [
         exercises: [
           {
             id: 1,
-            name: "Supino Reto",
-            sets: 4,
-            reps: "10",
-            rest: 90,
+            name: "Supino Reto com Halteres",
+            sets: 3,
+            reps: "8",
+            rest: 60,
             history: [
-              { date: "2026-07-10", weight: 40 },
-              { date: "2026-07-15", weight: 42 }
+              { date: "2026-06-22", weight: 10 }
             ]
           },
           {
             id: 2,
-            name: "Rosca Direta",
+            name: "Supino Inclinado com Halteres",
             sets: 3,
-            reps: "12",
+            reps: "8",
             rest: 60,
             history: [
-              { date: "2026-07-10", weight: 15 }
+              { date: "2026-06-22", weight: 10 }
             ]
           },
           {
             id: 3,
-            name: "Desenvolvimento",
+            name: "Tríceps na Polia com Barra Reta",
             sets: 3,
-            reps: "10",
-            rest: 75,
-            history: []
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-22", weight: 34 }
+            ]
+          },
+          {
+            id: 4,
+            name: "Tríceps Francês na Polia com Corda",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-22", weight: 22 }
+            ]
+          },
+          {
+            id: 5,
+            name: "Desenvolvimento Arnold Sentado",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-22", weight: 7 }
+            ]
+          },
+          {
+            id: 6,
+            name: "Elevação Frontal com Halteres",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-22", weight: 6 }
+            ]
+          },
+          {
+            id: 7,
+            name: "Afundo com Step",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-22", weight: 10 }
+            ]
+          },
+          {
+            id: 8,
+            name: "Cadeira Extensora",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-22", weight: 79 }
+            ]
           }
         ]
       },
@@ -44,33 +95,84 @@ window.DEFAULT_WORKOUTS = [
         name: "Treino B",
         exercises: [
           {
-            id: 4,
-            name: "Agachamento",
-            sets: 4,
+            id: 9,
+            name: "Puxada Aberta Barra Reta",
+            sets: 3,
             reps: "8",
-            rest: 120,
+            rest: 60,
             history: [
-              { date: "2026-07-11", weight: 60 },
-              { date: "2026-07-16", weight: 65 }
+              { date: "2026-06-24", weight: 40 }
             ]
           },
           {
-            id: 5,
-            name: "Leg Press",
-            sets: 4,
-            reps: "10",
-            rest: 90,
+            id: 10,
+            name: "Crucifixo Inverso Sentado",
+            sets: 3,
+            reps: "8",
+            rest: 60,
             history: [
-              { date: "2026-07-11", weight: 120 }
+              { date: "2026-06-24", weight: 6 }
             ]
           },
           {
-            id: 6,
-            name: "Panturrilha em Pe",
-            sets: 4,
-            reps: "15",
-            rest: 45,
-            history: []
+            id: 11,
+            name: "Rosca Zottman",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-24", weight: 6 }
+            ]
+          },
+          {
+            id: 12,
+            name: "Rosca Concentrada",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-24", weight: 6 }
+            ]
+          },
+          {
+            id: 13,
+            name: "Elevação Lateral com Halteres",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-24", weight: 7 }
+            ]
+          },
+          {
+            id: 14,
+            name: "Encolhimento de Ombros com Barra Reta",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-24", weight: 7.5 }
+            ]
+          },
+          {
+            id: 15,
+            name: "Bom Dia",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-24", weight: 5 }
+            ]
+          },
+          {
+            id: 16,
+            name: "Cadeira Flexora",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: [
+              { date: "2026-06-24", weight: 64 }
+            ]
           }
         ]
       },
@@ -79,30 +181,66 @@ window.DEFAULT_WORKOUTS = [
         name: "Treino C",
         exercises: [
           {
-            id: 7,
-            name: "Puxada Frontal",
-            sets: 4,
-            reps: "10",
+            id: 17,
+            name: "Agachamento Livre com Barra no Suporte",
+            sets: 3,
+            reps: "8",
             rest: 90,
-            history: [
-              { date: "2026-07-12", weight: 50 }
-            ]
+            history: []
           },
           {
-            id: 8,
-            name: "Remada Baixa",
+            id: 18,
+            name: "Agachamento com Barra Hexagonal",
             sets: 3,
-            reps: "12",
-            rest: 75,
-            history: [
-              { date: "2026-07-12", weight: 45 }
-            ]
+            reps: "8",
+            rest: 60,
+            history: []
           },
           {
-            id: 9,
-            name: "Triceps Corda",
+            id: 19,
+            name: "Leg Press 45°",
             sets: 3,
-            reps: "12",
+            reps: "8",
+            rest: 60,
+            history: []
+          },
+          {
+            id: 20,
+            name: "Crucifixo Máquina",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: []
+          },
+          {
+            id: 21,
+            name: "Pegada Neutra Triângulo",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: []
+          },
+          {
+            id: 22,
+            name: "Adução de Quadril Máquina",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: []
+          },
+          {
+            id: 23,
+            name: "Abdução de Quadril Máquina",
+            sets: 3,
+            reps: "8",
+            rest: 60,
+            history: []
+          },
+          {
+            id: 24,
+            name: "100 Abdominais",
+            sets: 3,
+            reps: "100",
             rest: 60,
             history: []
           }
