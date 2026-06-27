@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg: #f5f6f1;
   --surface: #ffffff;
   --surface-muted: #eef2ea;
@@ -9,6 +10,19 @@
   --accent-strong: #292626;
   --danger: #8a3b2f;
   --shadow: 0 10px 24px rgba(25, 35, 29, 0.08);
+}
+
+body.dark-theme {
+  color-scheme: dark;
+  --bg: #121514;
+  --surface: #1c211f;
+  --surface-muted: #252d29;
+  --text: #eef4ef;
+  --muted: #a6b3aa;
+  --line: #354039;
+  --accent: #48a778;
+  --accent-strong: #0d0f0e;
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
 }
 
 * {
@@ -35,10 +49,17 @@ input {
   padding: 28px 18px 22px;
 }
 
-.app-header>div,
+.app-header > div,
 .app-shell {
   width: min(920px, 100%);
   margin: 0 auto;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
 .eyebrow {
@@ -60,6 +81,18 @@ p {
 h1 {
   margin-bottom: 0;
   font-size: clamp(1.55rem, 1.2rem + 1vw, 2.2rem);
+}
+
+.theme-toggle {
+  flex: 0 0 auto;
+  min-height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 h2 {
@@ -114,6 +147,18 @@ h2 {
 .day-c {
   border-color: #d9b32f;
   color: #7a5c00;
+}
+
+body.dark-theme .day-a {
+  color: #ff8d8d;
+}
+
+body.dark-theme .day-b {
+  color: #87baff;
+}
+
+body.dark-theme .day-c {
+  color: #f1d86d;
 }
 
 .day-a.is-active {
@@ -226,7 +271,8 @@ h2 {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 0 12px;
-  background: #ffffff;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .save-button,
@@ -337,6 +383,10 @@ h2 {
 @media (max-width: 560px) {
   .app-header {
     padding-top: 22px;
+  }
+
+  .header-content {
+    align-items: flex-start;
   }
 
   .app-shell {
