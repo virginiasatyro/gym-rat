@@ -24,17 +24,37 @@ const Storage = (() => {
     const savedVersion = localStorage.getItem(versionKey);
     const currentVersion = String(getCurrentVersion());
 
-    if (!saved || savedVersion !== currentVersion) {
+    if (!saved) {
       save(defaults);
       return defaults;
     }
 
     try {
-      return JSON.parse(saved);
+      const parsed = JSON.parse(saved);
+      const workouts = mergeWithDefaults(Array.isArray(parsed) ? parsed : [], defaults);
+
+      if (savedVersion !== currentVersion || workouts.length !== parsed.length) {
+        save(workouts);
+      }
+
+      return workouts;
     } catch (error) {
       save(defaults);
       return defaults;
     }
+  }
+
+  function mergeWithDefaults(savedWorkouts, defaultWorkouts) {
+    const merged = clone(savedWorkouts);
+    const savedIds = new Set(merged.map((workout) => workout.id));
+
+    defaultWorkouts.forEach((defaultWorkout) => {
+      if (!savedIds.has(defaultWorkout.id)) {
+        merged.push(clone(defaultWorkout));
+      }
+    });
+
+    return merged;
   }
 
   function save(workouts) {

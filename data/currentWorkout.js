@@ -1,4 +1,4 @@
-window.DEFAULT_WORKOUTS_VERSION = 20260627;
+window.DEFAULT_WORKOUTS_VERSION = 2026062702;
 window.CURRENT_WORKOUT = {
   id: 1,
   name: "Treino Junho-Julho 2026",
