@@ -28,6 +28,17 @@
         <div id="current-day" class="workout-day"></div>
       </section>
 
+      <section class="backup-section" aria-labelledby="backup-title">
+        <h2 id="backup-title">Backup JSON</h2>
+        <div class="backup-actions">
+          <button id="export-backup" class="backup-button" type="button">Exportar</button>
+          <button id="export-current-old" class="backup-button" type="button">Exportar atual como antigo</button>
+          <button id="import-backup" class="backup-button" type="button">Importar</button>
+        </div>
+        <textarea id="backup-json" class="backup-textarea" rows="10" spellcheck="false" placeholder="JSON do backup"></textarea>
+        <p id="backup-status" class="backup-status" aria-live="polite"></p>
+      </section>
+
     </main>
 
     <script src="data/currentWorkout.js"></script>
@@ -36,6 +47,7 @@
     <script src="js/workouts.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/backup.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

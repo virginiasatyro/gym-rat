@@ -8,6 +8,10 @@ const App = (() => {
     const activeWorkout = Workouts.getActive(state.workouts);
     state.selectedDayId = activeWorkout.workouts[0].id;
     Theme.init();
+    Backup.init({
+      getWorkouts: () => state.workouts,
+      setWorkouts
+    });
     render();
   }
 
@@ -25,6 +29,16 @@ const App = (() => {
 
   function saveWeight(workoutId, dayId, exerciseId, weight) {
     state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, weight);
+    Storage.save(state.workouts);
+    render();
+  }
+
+  function setWorkouts(workouts) {
+    state.workouts = workouts;
+
+    const activeWorkout = Workouts.getActive(state.workouts);
+    state.selectedDayId = activeWorkout.workouts[0].id;
+
     Storage.save(state.workouts);
     render();
   }

@@ -124,7 +124,8 @@ h2 {
 }
 
 .current-section,
-.old-section {
+.old-section,
+.backup-section {
   margin-bottom: 26px;
 }
 
@@ -354,6 +355,48 @@ body.dark-theme .trend-up {
 .old-button {
   padding: 0 14px;
   background: var(--surface-muted);
+}
+
+.backup-section {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+.backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.backup-button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--surface-muted);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.backup-textarea {
+  width: 100%;
+  min-height: 220px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  resize: vertical;
+  background: var(--surface);
+  color: var(--text);
+  font: 0.9rem Consolas, "Courier New", monospace;
+}
+
+.backup-status {
+  min-height: 22px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-weight: 700;
 }
 
 .history {

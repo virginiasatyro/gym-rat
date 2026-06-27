@@ -19,3 +19,11 @@ Abra o arquivo `index.html` no navegador ou publique o repositorio no GitHub Pag
 
 - `index.html`: treino atual.
 - `old-workouts.html`: treinos antigos em modo somente leitura.
+
+## Backup
+
+Na pagina principal:
+
+- `Exportar`: gera um backup completo com todos os treinos salvos no navegador.
+- `Exportar atual como antigo`: gera apenas o treino atual com `active: false`, pronto para copiar para `OLD_WORKOUTS` no futuro.
+- `Importar`: restaura um backup completo exportado anteriormente.

@@ -63,6 +63,7 @@ const Storage = (() => {
   }
 
   return {
+    clone,
     load,
     save
   };
