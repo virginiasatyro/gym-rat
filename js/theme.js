@@ -21,7 +21,8 @@ const Theme = (() => {
     document.body.classList.toggle("dark-theme", useDark);
 
     if (button) {
-      button.textContent = useDark ? "Claro" : "Escuro";
+      button.title = "Alternar tema";
+      button.setAttribute("aria-label", "Alternar tema");
     }
   }
 
