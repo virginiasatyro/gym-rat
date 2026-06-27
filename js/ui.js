@@ -6,7 +6,7 @@ const UI = (() => {
     document.getElementById("active-workout-name").textContent = activeWorkout.name;
 
     renderTabs(activeWorkout, state.selectedDayId, actions);
-    renderCurrentDay(activeWorkout, state.selectedDayId, actions);
+    renderCurrentDay(activeWorkout, state.selectedDayId, actions, state.workouts);
   }
 
   function renderTabs(activeWorkout, selectedDayId, actions) {
@@ -24,7 +24,7 @@ const UI = (() => {
     });
   }
 
-  function renderCurrentDay(activeWorkout, selectedDayId, actions) {
+  function renderCurrentDay(activeWorkout, selectedDayId, actions, allWorkouts) {
     const container = document.getElementById("current-day");
     const day = Workouts.findDay(activeWorkout, selectedDayId);
 
@@ -39,19 +39,19 @@ const UI = (() => {
     list.className = "exercise-list";
 
     day.exercises.forEach((exercise) => {
-      list.appendChild(renderExercise(activeWorkout.id, day.id, exercise, false, actions));
+      list.appendChild(renderExercise(activeWorkout.id, day.id, exercise, false, actions, allWorkouts));
     });
 
     container.appendChild(list);
   }
 
-  function renderExercise(workoutId, dayId, exercise, readonly, actions) {
+  function renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts = []) {
     const card = document.createElement("article");
     card.className = "exercise-card";
 
     const lastWeight = Workouts.getLastWeight(exercise);
     const stats = Workouts.getStats(exercise);
-    const prCategories = Workouts.getPrCategories(exercise);
+    const prCategories = Workouts.getPrCategories(exercise, allWorkouts);
     const trend = Workouts.getWeightTrend(exercise);
     const historyId = `history-${workoutId}-${dayId}-${exercise.id}`;
     const timerId = `timer-${workoutId}-${dayId}-${exercise.id}`;
@@ -182,7 +182,7 @@ const UI = (() => {
     return list;
   }
 
-  function renderOldWorkouts(oldWorkouts) {
+  function renderOldWorkouts(oldWorkouts, allWorkouts = oldWorkouts) {
     const container = document.getElementById("old-workouts");
     container.innerHTML = "";
 
@@ -219,7 +219,7 @@ const UI = (() => {
         day.exercises.forEach((exercise) => {
           const item = document.createElement("div");
           item.className = "old-exercise";
-          item.appendChild(renderExercise(workout.id, day.id, exercise, true, {}));
+          item.appendChild(renderExercise(workout.id, day.id, exercise, true, {}, allWorkouts));
           dayBlock.appendChild(item);
         });
 

@@ -1,7 +1,9 @@
 const OldWorkoutsPage = (() => {
   function init() {
+    const workouts = Storage.load();
+
     Theme.init();
-    UI.renderOldWorkouts(Workouts.getOld(Storage.load()));
+    UI.renderOldWorkouts(Workouts.getOld(workouts), workouts);
   }
 
   return {

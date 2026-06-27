@@ -57,15 +57,54 @@ const Workouts = (() => {
     };
   }
 
-  function getPrCategories(exercise) {
-    const stats = getStats(exercise);
-    const category = getRepCategory(exercise.reps);
-
-    return {
-      low: category === "low" ? stats.pr : null,
-      medium: category === "medium" ? stats.pr : null,
-      high: category === "high" ? stats.pr : null
+  function getPrCategories(exercise, workouts = []) {
+    const categories = {
+      low: null,
+      medium: null,
+      high: null
     };
+
+    const matchingExercises = getMatchingExercises(workouts, exercise);
+
+    if (!matchingExercises.length) {
+      matchingExercises.push(exercise);
+    }
+
+    matchingExercises.forEach((matchingExercise) => {
+      const stats = getStats(matchingExercise);
+      const category = getRepCategory(matchingExercise.reps);
+
+      if (!category || stats.pr === null) return;
+
+      categories[category] = Math.max(categories[category] || 0, stats.pr);
+    });
+
+    return categories;
+  }
+
+  function getMatchingExercises(workouts, exercise) {
+    const exerciseName = normalizeName(exercise.name);
+    const matches = [];
+
+    workouts.forEach((workout) => {
+      (workout.workouts || []).forEach((day) => {
+        (day.exercises || []).forEach((candidate) => {
+          if (normalizeName(candidate.name) === exerciseName) {
+            matches.push(candidate);
+          }
+        });
+      });
+    });
+
+    return matches;
+  }
+
+  function normalizeName(name) {
+    return String(name)
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
   }
 
   function getRepCategory(reps) {
