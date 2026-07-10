@@ -3,7 +3,7 @@ const OldWorkoutsPage = (() => {
     const workouts = Storage.load();
 
     Theme.init();
-    UI.renderOldWorkouts(Workouts.getOld(workouts), workouts);
+    UI.renderOldWorkouts(Workouts.getOldByYear(workouts), workouts);
   }
 
   return {

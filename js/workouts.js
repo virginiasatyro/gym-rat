@@ -7,6 +7,56 @@ const Workouts = (() => {
     return workouts.filter((workout) => !workout.active);
   }
 
+  function getOldByYear(workouts) {
+    const years = [2026, 2025, 2024, 2023];
+    const groups = new Map(years.map((year) => [year, []]));
+
+    getOld(workouts).forEach((workout) => {
+      const year = getWorkoutYear(workout);
+
+      if (!groups.has(year)) {
+        groups.set(year, []);
+      }
+
+      groups.get(year).push(workout);
+    });
+
+    return Array.from(groups.entries())
+      .sort((first, second) => second[0] - first[0])
+      .map(([year, yearWorkouts]) => ({
+        year,
+        workouts: yearWorkouts
+      }));
+  }
+
+  function getWorkoutYear(workout) {
+    const explicitYear = Number(workout.year);
+    if (Number.isInteger(explicitYear)) return explicitYear;
+
+    const nameYear = String(workout.name || "").match(/\b(20\d{2})\b/);
+    if (nameYear) return Number(nameYear[1]);
+
+    const historyYear = findFirstHistoryYear(workout);
+    if (historyYear) return historyYear;
+
+    return new Date().getFullYear();
+  }
+
+  function findFirstHistoryYear(workout) {
+    for (const day of workout.workouts || []) {
+      for (const exercise of day.exercises || []) {
+        const datedEntry = (exercise.history || []).find((entry) => /^\d{4}-/.test(String(entry.date || "")));
+        if (datedEntry) return Number(String(datedEntry.date).slice(0, 4));
+
+        if (/^\d{4}-/.test(String(exercise.lastWeightDate || ""))) {
+          return Number(String(exercise.lastWeightDate).slice(0, 4));
+        }
+      }
+    }
+
+    return null;
+  }
+
   function findDay(workout, dayId) {
     return workout.workouts.find((day) => day.id === dayId) || workout.workouts[0];
   }
@@ -310,6 +360,7 @@ const Workouts = (() => {
     getDayStatus,
     getLastWeight,
     getOld,
+    getOldByYear,
     getPrCategories,
     getStableExerciseId,
     getStats,

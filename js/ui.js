@@ -307,11 +307,11 @@ const UI = (() => {
     return list;
   }
 
-  function renderOldWorkouts(oldWorkouts, allWorkouts = oldWorkouts) {
+  function renderOldWorkouts(oldWorkoutYears, allWorkouts = []) {
     const container = document.getElementById("old-workouts");
     container.innerHTML = "";
 
-    if (!oldWorkouts.length) {
+    if (!oldWorkoutYears.length) {
       const empty = document.createElement("p");
       empty.className = "empty-state";
       empty.textContent = "Nenhum treino antigo cadastrado.";
@@ -319,41 +319,70 @@ const UI = (() => {
       return;
     }
 
-    oldWorkouts.forEach((workout) => {
-      const panel = document.createElement("article");
-      panel.className = "old-workout-panel";
+    oldWorkoutYears.forEach((yearGroup) => {
+      const yearPanel = document.createElement("section");
+      yearPanel.className = "old-year-panel";
 
-      const contentId = `old-${workout.id}`;
-      const button = document.createElement("button");
-      button.className = "old-button";
-      button.type = "button";
-      button.innerHTML = `<span>${escapeHtml(workout.name)}</span><span>Ver</span>`;
-      button.addEventListener("click", () => {
-        document.getElementById(contentId).classList.toggle("is-open");
+      const yearContentId = `old-year-${yearGroup.year}`;
+      const yearButton = document.createElement("button");
+      yearButton.className = "old-year-button";
+      yearButton.type = "button";
+      yearButton.innerHTML = `<span>${escapeHtml(yearGroup.year)}</span><span>${yearGroup.workouts.length} treino${yearGroup.workouts.length === 1 ? "" : "s"}</span>`;
+      yearButton.addEventListener("click", () => {
+        document.getElementById(yearContentId).classList.toggle("is-open");
       });
 
-      const content = document.createElement("div");
-      content.className = "old-content";
-      content.id = contentId;
+      const yearContent = document.createElement("div");
+      yearContent.className = "old-year-content";
+      yearContent.id = yearContentId;
 
-      workout.workouts.forEach((day) => {
-        const dayBlock = document.createElement("section");
-        dayBlock.className = "old-day";
-        dayBlock.innerHTML = `<h3>${escapeHtml(day.name)}</h3>`;
+      if (!yearGroup.workouts.length) {
+        const empty = document.createElement("p");
+        empty.className = "empty-state old-year-empty";
+        empty.textContent = "Nenhum treino cadastrado neste ano.";
+        yearContent.appendChild(empty);
+      }
 
-        buildExerciseGroups(day.exercises).forEach((group) => {
-          const item = document.createElement("div");
-          item.className = "old-exercise";
-          item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, false, {}, allWorkouts, day));
-          dayBlock.appendChild(item);
+      yearGroup.workouts.forEach((workout) => {
+        const panel = document.createElement("article");
+        panel.className = "old-workout-panel";
+
+        const contentId = `old-${workout.id}`;
+        const button = document.createElement("button");
+        button.className = "old-button";
+        button.type = "button";
+        button.innerHTML = `<span>${escapeHtml(workout.name)}</span><span>Ver</span>`;
+        button.addEventListener("click", () => {
+          document.getElementById(contentId).classList.toggle("is-open");
         });
 
-        content.appendChild(dayBlock);
+        const content = document.createElement("div");
+        content.className = "old-content";
+        content.id = contentId;
+
+        workout.workouts.forEach((day) => {
+          const dayBlock = document.createElement("section");
+          dayBlock.className = "old-day";
+          dayBlock.innerHTML = `<h3>${escapeHtml(day.name)}</h3>`;
+
+          buildExerciseGroups(day.exercises).forEach((group) => {
+            const item = document.createElement("div");
+            item.className = "old-exercise";
+            item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, false, {}, allWorkouts, day));
+            dayBlock.appendChild(item);
+          });
+
+          content.appendChild(dayBlock);
+        });
+
+        panel.appendChild(button);
+        panel.appendChild(content);
+        yearContent.appendChild(panel);
       });
 
-      panel.appendChild(button);
-      panel.appendChild(content);
-      container.appendChild(panel);
+      yearPanel.appendChild(yearButton);
+      yearPanel.appendChild(yearContent);
+      container.appendChild(yearPanel);
     });
   }
 

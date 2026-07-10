@@ -35,4 +35,18 @@ assert.strictEqual(Workouts.canEditWeights(planned[0].workouts[0]), true);
 const trained = Workouts.markDayStatus(planned, 1, 'A', 'train');
 assert.strictEqual(trained[0].workouts[0].status.trained, true);
 assert.strictEqual(trained[0].workouts[0].status.trainedDate, plannedDate);
+
+const groupedOldWorkouts = Workouts.getOldByYear([
+  ...trained,
+  {
+    id: 2,
+    active: false,
+    year: 2025,
+    name: 'Treino Teste',
+    workouts: []
+  }
+]);
+
+assert.deepStrictEqual(groupedOldWorkouts.map((group) => group.year), [2026, 2025, 2024, 2023]);
+assert.strictEqual(groupedOldWorkouts.find((group) => group.year === 2025).workouts.length, 1);
 console.log('workouts-status test passed');

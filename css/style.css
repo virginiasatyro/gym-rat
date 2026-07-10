@@ -154,6 +154,7 @@ h2 {
 .save-button,
 .history-button,
 .timer-button,
+.old-year-button,
 .old-button {
   min-height: 44px;
   border: 1px solid var(--line);
@@ -507,6 +508,7 @@ body.dark-theme .trend-up {
 }
 
 .history-button,
+.old-year-button,
 .old-button {
   padding: 0 14px;
   background: var(--surface-muted);
@@ -592,11 +594,43 @@ body.dark-theme .trend-up {
 
 .old-workouts {
   display: grid;
-  gap: 10px;
+  gap: 14px;
 }
 
 .old-workout-panel {
   overflow: hidden;
+}
+
+.old-year-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.old-year-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-color: var(--accent);
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.old-year-button span:first-child {
+  font-size: 1.1rem;
+}
+
+.old-year-content {
+  display: none;
+  gap: 10px;
+}
+
+.old-year-content.is-open {
+  display: grid;
+}
+
+.old-year-empty {
+  padding: 0 4px;
 }
 
 .old-button {
