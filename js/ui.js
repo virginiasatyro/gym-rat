@@ -35,24 +35,62 @@ const UI = (() => {
     title.textContent = day.name;
     container.appendChild(title);
 
+    const dayStatusCard = renderDayStatus(activeWorkout.id, day, actions);
+    container.appendChild(dayStatusCard);
+
     const list = document.createElement("div");
     list.className = "exercise-list";
 
     buildExerciseGroups(day.exercises).forEach((group) => {
-      list.appendChild(renderExerciseGroup(activeWorkout.id, day.id, group, false, actions, allWorkouts));
+      list.appendChild(renderExerciseGroup(activeWorkout.id, day.id, group, false, Workouts.canEditWeights(day), actions, allWorkouts, day));
     });
 
     container.appendChild(list);
   }
 
-  function renderExerciseGroup(workoutId, dayId, group, readonly, actions, allWorkouts = []) {
+  function renderDayStatus(workoutId, day, actions) {
+    const status = Workouts.getDayStatus(day);
+    const card = document.createElement("section");
+    card.className = "day-status-card";
+
+    const trainingCount = Number(status.trainingCount) || 0;
+    const summary = status.trained
+      ? `Treinada em ${Workouts.formatDate(status.trainedDate)} · ${trainingCount}x treinada`
+      : status.planned
+        ? `Vai treinar hoje`
+        : "Ainda não marcada";
+
+    const actionsRow = document.createElement("div");
+    actionsRow.className = "day-status-actions";
+
+    const trainButton = document.createElement("button");
+    trainButton.className = `status-button${status.trained ? " is-active" : ""}`;
+    trainButton.type = "button";
+    trainButton.textContent = status.trained ? "Treinada" : "Ficha treinada";
+    trainButton.addEventListener("click", () => {
+      actions.markDayStatus(workoutId, day.id, "train");
+    });
+    actionsRow.appendChild(trainButton);
+
+    card.innerHTML = `
+      <div class="day-status-copy">
+        <h3>Status da ficha</h3>
+        <p>${escapeHtml(summary)}</p>
+      </div>
+    `;
+    card.appendChild(actionsRow);
+
+    return card;
+  }
+
+  function renderExerciseGroup(workoutId, dayId, group, readonly, canEditWeights, actions, allWorkouts = [], day = null) {
     const exercises = group.exercises || [];
 
     if (!isConjugatedGroup(group)) {
       const fragment = document.createDocumentFragment();
 
       exercises.forEach((exercise) => {
-        fragment.appendChild(renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts));
+        fragment.appendChild(renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts, day));
       });
 
       return fragment;
@@ -72,7 +110,7 @@ const UI = (() => {
     exercises.forEach((exercise) => {
       const item = document.createElement("div");
       item.className = "conjugated-group-item";
-      item.appendChild(renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts));
+      item.appendChild(renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts, day));
       items.appendChild(item);
     });
 
@@ -113,7 +151,7 @@ const UI = (() => {
     return Boolean(group.conjugated);
   }
 
-  function renderExercise(workoutId, dayId, exercise, readonly, actions, allWorkouts = []) {
+  function renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts = [], day = null) {
     if (exercise.type === "rest") {
       const card = document.createElement("article");
       card.className = "exercise-card rest-card";
@@ -138,6 +176,7 @@ const UI = (() => {
     const trend = Workouts.getWeightTrend(exercise);
     const historyId = `history-${workoutId}-${dayId}-${exercise.id}`;
     const timerId = `timer-${workoutId}-${dayId}-${exercise.id}`;
+    const status = Workouts.getDayStatus(day || { status: {} });
 
     card.innerHTML = `
       <div class="exercise-header">
@@ -171,14 +210,16 @@ const UI = (() => {
           <dt>Media</dt>
           <dd>${stats.average === null ? "-" : `${Workouts.formatWeight(stats.average)} kg`}</dd>
         </div>
-        <div>
-          <dt>Registros</dt>
-          <dd>${stats.count}</dd>
+        <div class="comment-stat">
+          <dt>Comentário</dt>
+          <dd class="comment-cell">
+            <input class="comment-input" type="text" value="${escapeHtml(exercise.comment || "")}" placeholder="Comentário do exercício">
+          </dd>
         </div>
       </dl>
     `;
 
-    if (!readonly) {
+    if (!readonly && canEditWeights) {
       const form = document.createElement("form");
       form.className = "weight-form";
       form.innerHTML = `
@@ -203,8 +244,24 @@ const UI = (() => {
     } else {
       const note = document.createElement("p");
       note.className = "readonly-note";
-      note.textContent = "Somente visualizacao.";
+      note.textContent = readonly
+        ? "Somente visualizacao."
+        : "Marque o treino do dia para editar pesos.";
       card.appendChild(note);
+    }
+
+    const commentInput = card.querySelector(".comment-input");
+    if (commentInput) {
+      commentInput.addEventListener("blur", () => {
+        actions.saveExerciseComment(workoutId, dayId, exercise.id, commentInput.value);
+      });
+
+      commentInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          commentInput.blur();
+        }
+      });
     }
 
     const actionsRow = document.createElement("div");
@@ -287,7 +344,7 @@ const UI = (() => {
         buildExerciseGroups(day.exercises).forEach((group) => {
           const item = document.createElement("div");
           item.className = "old-exercise";
-          item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, {}, allWorkouts));
+          item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, false, {}, allWorkouts, day));
           dayBlock.appendChild(item);
         });
 

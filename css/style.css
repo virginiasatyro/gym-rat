@@ -395,6 +395,87 @@ body.dark-theme .trend-up {
   color: #6ee094;
 }
 
+.day-status-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.day-status-copy h3 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+}
+
+.day-status-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.day-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.comment-stat .comment-input {
+  width: 100%;
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 6px 8px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.comment-cell {
+  font-size: 0.9rem;
+  color: var(--muted);
+  word-break: break-word;
+}
+
+.status-button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  background: var(--surface-muted);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.status-button.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.summary-comment-button {
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 12px;
+  background: var(--surface-muted);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.readonly-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .weight-form {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

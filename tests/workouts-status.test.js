@@ -1,0 +1,38 @@
+const assert = require('assert');
+const fs = require('fs');
+const vm = require('vm');
+
+const source = fs.readFileSync('js/workouts.js', 'utf8');
+const transformed = source.replace('const Workouts = (() => {', 'globalThis.__Workouts = (() => {');
+const context = {
+  window: { EXERCISE_CATALOG_BY_NAME: {} },
+  console,
+  Date
+};
+
+vm.createContext(context);
+vm.runInContext(transformed, context);
+
+const Workouts = context.__Workouts;
+const workouts = [{
+  id: 1,
+  active: true,
+  workouts: [{
+    id: 'A',
+    name: 'Treino A',
+    exercises: []
+  }]
+}];
+
+assert.strictEqual(Workouts.canEditWeights(workouts[0].workouts[0]), false);
+
+const planned = Workouts.markDayStatus(workouts, 1, 'A', 'plan');
+const plannedDate = new Date().toISOString().slice(0, 10);
+assert.strictEqual(planned[0].workouts[0].status.planned, true);
+assert.strictEqual(planned[0].workouts[0].status.plannedDate, plannedDate);
+assert.strictEqual(Workouts.canEditWeights(planned[0].workouts[0]), true);
+
+const trained = Workouts.markDayStatus(planned, 1, 'A', 'train');
+assert.strictEqual(trained[0].workouts[0].status.trained, true);
+assert.strictEqual(trained[0].workouts[0].status.trainedDate, plannedDate);
+console.log('workouts-status test passed');

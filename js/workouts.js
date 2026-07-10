@@ -11,6 +11,100 @@ const Workouts = (() => {
     return workout.workouts.find((day) => day.id === dayId) || workout.workouts[0];
   }
 
+  function ensureDayStatus(day) {
+    if (!day.status || typeof day.status !== "object") {
+      day.status = {};
+    }
+
+    if (typeof day.status.planned !== "boolean") {
+      day.status.planned = false;
+    }
+
+    if (typeof day.status.trained !== "boolean") {
+      day.status.trained = false;
+    }
+
+    if (typeof day.status.plannedDate !== "string" || !day.status.plannedDate) {
+      day.status.plannedDate = null;
+    }
+
+    if (typeof day.status.trainedDate !== "string" || !day.status.trainedDate) {
+      day.status.trainedDate = null;
+    }
+
+    if (typeof day.status.trainingCount !== "number" || Number.isNaN(day.status.trainingCount)) {
+      day.status.trainingCount = 0;
+    }
+
+    if (typeof day.status.comment !== "string") {
+      day.status.comment = "";
+    }
+
+    return day.status;
+  }
+
+  function getDayStatus(day) {
+    return ensureDayStatus(day);
+  }
+
+  function canEditWeights(day) {
+    const status = getDayStatus(day);
+    return Boolean(status.planned || status.trained);
+  }
+
+  function markDayStatus(workouts, workoutId, dayId, type) {
+    const workout = workouts.find((item) => item.id === workoutId);
+    if (!workout) return workouts;
+
+    const day = findDay(workout, dayId);
+    if (!day) return workouts;
+
+    const status = ensureDayStatus(day);
+    const today = new Date().toISOString().slice(0, 10);
+
+    if (type === "plan") {
+      status.planned = true;
+      status.plannedDate = today;
+      return workouts;
+    }
+
+    if (type === "train") {
+      const alreadyTrainedToday = workouts.some((candidateWorkout) => {
+        const candidateDay = findDay(candidateWorkout, dayId);
+        if (!candidateDay || candidateWorkout.id === workoutId) return false;
+        const candidateStatus = getDayStatus(candidateDay);
+        return Boolean(candidateStatus.trained && candidateStatus.trainedDate === today);
+      });
+
+      if (alreadyTrainedToday || status.trainedDate === today) {
+        return workouts;
+      }
+
+      status.planned = true;
+      status.plannedDate = status.plannedDate || today;
+      status.trained = true;
+      status.trainedDate = today;
+      status.trainingCount = (Number(status.trainingCount) || 0) + 1;
+      return workouts;
+    }
+
+    return workouts;
+  }
+
+  function saveExerciseComment(workouts, workoutId, dayId, exerciseId, comment) {
+    const workout = workouts.find((item) => item.id === workoutId);
+    if (!workout) return workouts;
+
+    const day = findDay(workout, dayId);
+    if (!day) return workouts;
+
+    const exercise = (day.exercises || []).find((item) => item.id === exerciseId);
+    if (!exercise) return workouts;
+
+    exercise.comment = String(comment || "").trim();
+    return workouts;
+  }
+
   function findExercise(workouts, workoutId, dayId, exerciseId) {
     const workout = workouts.find((item) => item.id === workoutId);
     if (!workout) return null;
@@ -203,20 +297,25 @@ const Workouts = (() => {
   }
 
   function formatDate(date) {
+    if (!date) return "";
     const [year, month, day] = date.split("-");
     return `${day}/${month}`;
   }
 
   return {
     addWeight,
+    canEditWeights,
     findDay,
     getActive,
+    getDayStatus,
     getLastWeight,
     getOld,
     getPrCategories,
     getStableExerciseId,
     getStats,
     getWeightTrend,
+    markDayStatus,
+    saveExerciseComment,
     formatWeight,
     formatDate
   };

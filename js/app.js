@@ -18,7 +18,9 @@ const App = (() => {
   function render() {
     UI.render(state, {
       selectDay,
-      saveWeight
+      saveWeight,
+      markDayStatus,
+      saveExerciseComment
     });
   }
 
@@ -28,7 +30,26 @@ const App = (() => {
   }
 
   function saveWeight(workoutId, dayId, exerciseId, weight) {
+    const workout = state.workouts.find((item) => item.id === workoutId);
+    const day = workout ? Workouts.findDay(workout, dayId) : null;
+
+    if (!day || !Workouts.canEditWeights(day)) {
+      return;
+    }
+
     state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, weight);
+    Storage.save(state.workouts);
+    render();
+  }
+
+  function markDayStatus(workoutId, dayId, type) {
+    state.workouts = Workouts.markDayStatus(state.workouts, workoutId, dayId, type);
+    Storage.save(state.workouts);
+    render();
+  }
+
+  function saveExerciseComment(workoutId, dayId, exerciseId, comment) {
+    state.workouts = Workouts.saveExerciseComment(state.workouts, workoutId, dayId, exerciseId, comment);
     Storage.save(state.workouts);
     render();
   }
