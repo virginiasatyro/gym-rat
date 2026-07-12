@@ -72,7 +72,7 @@ const Storage = (() => {
 
         if (!savedExercise || savedExercise.type === "rest") return;
 
-        if (!savedExercise.exerciseId && defaultExercise.exerciseId) {
+        if (defaultExercise.exerciseId) {
           savedExercise.exerciseId = defaultExercise.exerciseId;
         }
       });
