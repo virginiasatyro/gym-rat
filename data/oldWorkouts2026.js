@@ -211,7 +211,7 @@ window.OLD_WORKOUTS_2026 = [
         id: "B",
         name: "Treino B",
         exercises: [
-          { id: 1, exerciseId: "agachamento-livre-barra-mp-suporte", name: "Agachamento Livre com Barra MP Suporte", sets: 3, reps: "6", rest: 120, lastWeight: 15, lastWeightDate: "2026-02-01", history: [{ date: "2026-02-01", weight: 15 }] },
+          { id: 1, exerciseId: "agachamento-livre-barra-suporte", name: "Agachamento Livre com Barra no Suporte", sets: 3, reps: "6", rest: 120, lastWeight: 15, lastWeightDate: "2026-02-01", history: [{ date: "2026-02-01", weight: 15 }] },
           { type: "rest", name: "Descanso", duration: 120 },
           { id: 2, exerciseId: "flexao-alternada-step", name: "Flexao Alternada no Step", sets: 3, reps: "16", rest: 60 },
           { type: "rest", name: "Descanso", duration: 60 },
