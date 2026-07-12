@@ -242,14 +242,14 @@ const Workouts = (() => {
 
   function getMatchingExercises(workouts, exercise) {
     const stableId = getStableExerciseId(exercise);
-    const exerciseName = normalizeName(exercise.name);
+    const exerciseName = normalizeName(getExerciseName(exercise));
     const matches = [];
 
     workouts.forEach((workout) => {
       (workout.workouts || []).forEach((day) => {
         (day.exercises || []).forEach((candidate) => {
           const sameStableId = stableId && getStableExerciseId(candidate) === stableId;
-          const sameNameWithoutStableId = !stableId && normalizeName(candidate.name) === exerciseName;
+          const sameNameWithoutStableId = !stableId && normalizeName(getExerciseName(candidate)) === exerciseName;
 
           if (sameStableId || sameNameWithoutStableId) {
             matches.push(candidate);
@@ -271,7 +271,15 @@ const Workouts = (() => {
 
   function getStableExerciseId(exercise) {
     if (exercise.exerciseId) return exercise.exerciseId;
-    return window.EXERCISE_CATALOG_BY_NAME?.[normalizeName(exercise.name)] || null;
+    return window.EXERCISE_CATALOG_BY_NAME?.[normalizeName(getExerciseName(exercise))] || null;
+  }
+
+  function getExerciseName(exercise) {
+    if (exercise.exerciseId && window.EXERCISE_CATALOG_BY_ID?.[exercise.exerciseId]) {
+      return window.EXERCISE_CATALOG_BY_ID[exercise.exerciseId].name;
+    }
+
+    return exercise.name || "";
   }
 
   function getRepCategory(reps) {
@@ -361,6 +369,7 @@ const Workouts = (() => {
     getLastWeight,
     getOld,
     getOldByYear,
+    getExerciseName,
     getPrCategories,
     getStableExerciseId,
     getStats,

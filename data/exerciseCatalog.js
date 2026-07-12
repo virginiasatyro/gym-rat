@@ -25,11 +25,11 @@ window.EXERCISE_CATALOG = [
   { id: "abdominais", name: "100 Abdominais" },
   { id: "flexao-bracos", name: "Flexao de Bracos" },
   { id: "prancha-dinamica", name: "Prancha Dinamica" },
-  { id: "remada-baixa-polia-neutra", name: "Remada Baixa na Polia Baixa (Pegaga Neutra)" },
+  { id: "remada-baixa-polia-neutra", name: "Remada Baixa na Polia Baixa (Pegada Neutra)" },
   { id: "rosca-inversa-halteres", name: "Rosca Inversa com Halteres" },
   { id: "abdominal-remador", name: "Abdominal Remador" },
   { id: "flexao-nordica", name: "Flexao Nordica" },
-  { id: "bridge-fit-ball-iii", name: "Brigde Fit Ball III" },
+  { id: "bridge-fit-ball-iii", name: "Bridge Fit Ball III" },
   { id: "abdominal-canivete", name: "Abdominal Canivete" },
   { id: "agachamento-isometrico", name: "Agachamento Isometrico" },
   { id: "abdominal-escalador", name: "Abdominal Escalador" },
@@ -144,6 +144,11 @@ window.EXERCISE_CATALOG_BY_NAME = window.EXERCISE_CATALOG.reduce((index, exercis
     index[normalizeCatalogName(name)] = exercise.id;
   });
 
+  return index;
+}, {});
+
+window.EXERCISE_CATALOG_BY_ID = window.EXERCISE_CATALOG.reduce((index, exercise) => {
+  index[exercise.id] = exercise;
   return index;
 }, {});
 

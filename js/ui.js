@@ -170,6 +170,7 @@ const UI = (() => {
     card.className = "exercise-card";
 
     const lastWeight = Workouts.getLastWeight(exercise);
+    const exerciseName = Workouts.getExerciseName(exercise);
     const restLabel = exercise.rest != null && exercise.rest !== "" ? ` · Descanso: ${exercise.rest} s` : "";
     const stats = Workouts.getStats(exercise);
     const prCategories = Workouts.getPrCategories(exercise, allWorkouts);
@@ -181,7 +182,7 @@ const UI = (() => {
     card.innerHTML = `
       <div class="exercise-header">
         <div>
-          <h3 class="exercise-title">${escapeHtml(exercise.name)}</h3>
+          <h3 class="exercise-title">${escapeHtml(exerciseName)}</h3>
           <p class="exercise-meta">${exercise.sets}x${escapeHtml(exercise.reps)}${restLabel}</p>
         </div>
         <div class="last-weight">
