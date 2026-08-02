@@ -80,4 +80,27 @@ const groupedOldWorkouts = Workouts.getOldByYear([
 
 assert.deepStrictEqual(groupedOldWorkouts.map((group) => group.year), [2026, 2025, 2024, 2023]);
 assert.strictEqual(groupedOldWorkouts.find((group) => group.year === 2025).workouts.length, 1);
+
+// PR shows gain from first weight, not absolute value
+const exerciseWithHistory = {
+  id: 1,
+  name: 'Supino',
+  reps: '8-10',
+  exerciseId: 'bench-press',
+  history: [
+    { date: '2025-01-10', weight: 40 },
+    { date: '2025-06-15', weight: 55 },
+    { date: '2025-12-20', weight: 60 }
+  ]
+};
+
+assert.strictEqual(Workouts.getFirstWeight(exerciseWithHistory), 40);
+
+const categories = Workouts.getPrCategories(exerciseWithHistory);
+assert.strictEqual(categories.medium, 20); // 60 - 40 = 20 gain
+
+const exerciseNoHistory = { id: 2, name: 'Novo', reps: '12' };
+const categoriesEmpty = Workouts.getPrCategories(exerciseNoHistory);
+assert.strictEqual(categoriesEmpty.high, null);
+
 console.log('workouts-status test passed');

@@ -236,11 +236,13 @@ const Workouts = (() => {
 
     matchingExercises.forEach((matchingExercise) => {
       const stats = getStats(matchingExercise);
+      const firstWeight = getFirstWeight(matchingExercise);
       const category = getRepCategory(matchingExercise.reps);
 
-      if (!category || stats.pr === null) return;
+      if (!category || stats.pr === null || firstWeight === null) return;
 
-      categories[category] = Math.max(categories[category] || 0, stats.pr);
+      const gain = stats.pr - firstWeight;
+      categories[category] = Math.max(categories[category] || 0, gain);
     });
 
     return categories;
@@ -345,6 +347,19 @@ const Workouts = (() => {
     return Number.isInteger(value) ? String(value) : value.toFixed(1);
   }
 
+  function getFirstWeight(exercise) {
+    const entries = getWeightEntries(exercise);
+    if (!entries.length) return null;
+
+    const sorted = [...entries].sort((a, b) => {
+      if (!a.date) return 1;
+      if (!b.date) return -1;
+      return a.date.localeCompare(b.date);
+    });
+
+    return sorted[0].weight;
+  }
+
   function getWeightEntries(exercise) {
     const history = Array.isArray(exercise.history) ? [...exercise.history] : [];
     const lastWeight = Number(exercise.lastWeight);
@@ -376,6 +391,7 @@ const Workouts = (() => {
     getOld,
     getOldByYear,
     getExerciseName,
+    getFirstWeight,
     getPrCategories,
     getStableExerciseId,
     getStats,

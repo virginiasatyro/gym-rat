@@ -194,16 +194,16 @@ const UI = (() => {
       </div>
       <dl class="exercise-stats">
         <div>
-          <dt>PR &lt;8</dt>
-          <dd>${prCategories.low === null ? "-" : `${Workouts.formatWeight(prCategories.low)} kg`}</dd>
+          <dt>Evolucao &lt;8</dt>
+          <dd>${prCategories.low === null ? "-" : `${formatPrGain(prCategories.low)} kg`}</dd>
         </div>
         <div>
-          <dt>PR 8-12</dt>
-          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatWeight(prCategories.medium)} kg`}</dd>
+          <dt>Evolucao 8-12</dt>
+          <dd>${prCategories.medium === null ? "-" : `${formatPrGain(prCategories.medium)} kg`}</dd>
         </div>
         <div>
-          <dt>PR &gt;12</dt>
-          <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} kg`}</dd>
+          <dt>Evolucao &gt;12</dt>
+          <dd>${prCategories.high === null ? "-" : `${formatPrGain(prCategories.high)} kg`}</dd>
         </div>
         <div>
           <dt>Variacao</dt>
@@ -425,6 +425,13 @@ const UI = (() => {
     const [year, month, day] = dateStr.split("-");
     const date = new Date(Number(year), Number(month) - 1, Number(day));
     return date.toLocaleDateString("pt-BR", { weekday: "long" });
+  }
+
+  function formatPrGain(value) {
+    if (value === null || value === undefined) return "-";
+    const num = Number(value);
+    if (!Number.isFinite(num)) return "-";
+    return num > 0 ? `+${Workouts.formatWeight(num)}` : Workouts.formatWeight(num);
   }
 
   return {
