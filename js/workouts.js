@@ -99,7 +99,7 @@ const Workouts = (() => {
 
   function canEditWeights(day) {
     const status = getDayStatus(day);
-    return Boolean(status.planned || status.trained);
+    return Boolean(status.trained);
   }
 
   function markDayStatus(workouts, workoutId, dayId, type) {
@@ -141,6 +141,14 @@ const Workouts = (() => {
       status.trained = true;
       status.trainedDate = today;
       status.trainingCount = (Number(status.trainingCount) || 0) + 1;
+
+      (day.exercises || []).forEach((exercise) => {
+        const lastWeight = getLastWeight(exercise);
+        if (lastWeight !== null) {
+          addWeight(workouts, workoutId, dayId, exercise.id, lastWeight);
+        }
+      });
+
       return workouts;
     }
 
@@ -236,13 +244,11 @@ const Workouts = (() => {
 
     matchingExercises.forEach((matchingExercise) => {
       const stats = getStats(matchingExercise);
-      const firstWeight = getFirstWeight(matchingExercise);
       const category = getRepCategory(matchingExercise.reps);
 
-      if (!category || stats.pr === null || firstWeight === null) return;
+      if (!category || stats.pr === null) return;
 
-      const gain = stats.pr - firstWeight;
-      categories[category] = Math.max(categories[category] || 0, gain);
+      categories[category] = Math.max(categories[category] || 0, stats.pr);
     });
 
     return categories;
@@ -347,19 +353,6 @@ const Workouts = (() => {
     return Number.isInteger(value) ? String(value) : value.toFixed(1);
   }
 
-  function getFirstWeight(exercise) {
-    const entries = getWeightEntries(exercise);
-    if (!entries.length) return null;
-
-    const sorted = [...entries].sort((a, b) => {
-      if (!a.date) return 1;
-      if (!b.date) return -1;
-      return a.date.localeCompare(b.date);
-    });
-
-    return sorted[0].weight;
-  }
-
   function getWeightEntries(exercise) {
     const history = Array.isArray(exercise.history) ? [...exercise.history] : [];
     const lastWeight = Number(exercise.lastWeight);
@@ -381,6 +374,18 @@ const Workouts = (() => {
     return `${day}/${month}`;
   }
 
+  function getEvolution(exercise) {
+    const entries = getWeightEntries(exercise);
+    if (entries.length < 2) return null;
+
+    const first = entries[0].weight;
+    const current = entries[entries.length - 1].weight;
+
+    if (first === null || current === null) return null;
+
+    return current - first;
+  }
+
   return {
     addWeight,
     canEditWeights,
@@ -391,7 +396,7 @@ const Workouts = (() => {
     getOld,
     getOldByYear,
     getExerciseName,
-    getFirstWeight,
+    getEvolution,
     getPrCategories,
     getStableExerciseId,
     getStats,

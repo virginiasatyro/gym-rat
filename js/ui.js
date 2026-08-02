@@ -177,6 +177,7 @@ const UI = (() => {
     const stats = Workouts.getStats(exercise);
     const prCategories = Workouts.getPrCategories(exercise, allWorkouts);
     const trend = Workouts.getWeightTrend(exercise);
+    const evolution = Workouts.getEvolution(exercise);
     const historyId = `history-${workoutId}-${dayId}-${exercise.id}`;
     const timerId = `timer-${workoutId}-${dayId}-${exercise.id}`;
     const status = Workouts.getDayStatus(day || { status: {} });
@@ -194,20 +195,24 @@ const UI = (() => {
       </div>
       <dl class="exercise-stats">
         <div>
-          <dt>Evolucao &lt;8</dt>
-          <dd>${prCategories.low === null ? "-" : `${formatPrGain(prCategories.low)} kg`}</dd>
+          <dt>PR &lt;8</dt>
+          <dd>${prCategories.low === null ? "-" : `${Workouts.formatWeight(prCategories.low)} kg`}</dd>
         </div>
         <div>
-          <dt>Evolucao 8-12</dt>
-          <dd>${prCategories.medium === null ? "-" : `${formatPrGain(prCategories.medium)} kg`}</dd>
+          <dt>PR 8-12</dt>
+          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatWeight(prCategories.medium)} kg`}</dd>
         </div>
         <div>
-          <dt>Evolucao &gt;12</dt>
-          <dd>${prCategories.high === null ? "-" : `${formatPrGain(prCategories.high)} kg`}</dd>
+          <dt>PR &gt;12</dt>
+          <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} kg`}</dd>
         </div>
         <div>
           <dt>Variacao</dt>
           <dd class="trend trend-${trend.type}">${escapeHtml(trend.label)}</dd>
+        </div>
+        <div>
+          <dt>Evolucao</dt>
+          <dd>${renderEvolution(evolution)}</dd>
         </div>
         <div>
           <dt>Media</dt>
@@ -427,11 +432,14 @@ const UI = (() => {
     return date.toLocaleDateString("pt-BR", { weekday: "long" });
   }
 
-  function formatPrGain(value) {
-    if (value === null || value === undefined) return "-";
-    const num = Number(value);
+  function renderEvolution(evolution) {
+    if (evolution === null || evolution === undefined) return "-";
+    const num = Number(evolution);
     if (!Number.isFinite(num)) return "-";
-    return num > 0 ? `+${Workouts.formatWeight(num)}` : Workouts.formatWeight(num);
+    if (num === 0) return "Igual";
+    const cls = num > 0 ? "trend-up" : "trend-down";
+    const sign = num > 0 ? "+" : "";
+    return `<span class="${cls}">${sign}${Workouts.formatWeight(num)} kg</span>`;
   }
 
   return {
