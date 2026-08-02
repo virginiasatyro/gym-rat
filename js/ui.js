@@ -59,7 +59,7 @@ const UI = (() => {
     const summary = trainedToday
       ? `Treinada hoje · ${trainingCount}x treinada`
       : status.trainedDate
-        ? `Treinada ${formatWeekday(status.trainedDate)}`
+        ? `Treinada ${formatWeekday(status.trainedDate)} · ${trainingCount}x treinada`
         : "Ficha nova";
 
     const actionsRow = document.createElement("div");
