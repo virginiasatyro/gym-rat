@@ -187,10 +187,17 @@ const Workouts = (() => {
       exercise.history = [];
     }
 
-    exercise.history.push({
-      date: new Date().toISOString().slice(0, 10),
-      weight
-    });
+    const today = new Date().toISOString().slice(0, 10);
+    const lastEntry = exercise.history[exercise.history.length - 1];
+
+    if (lastEntry && lastEntry.date === today) {
+      lastEntry.weight = weight;
+    } else {
+      exercise.history.push({
+        date: today,
+        weight
+      });
+    }
     exercise.lastWeight = weight;
 
     return workouts;
