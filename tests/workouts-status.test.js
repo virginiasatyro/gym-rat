@@ -35,6 +35,37 @@ assert.strictEqual(Workouts.canEditWeights(planned[0].workouts[0]), true);
 const trained = Workouts.markDayStatus(planned, 1, 'A', 'train');
 assert.strictEqual(trained[0].workouts[0].status.trained, true);
 assert.strictEqual(trained[0].workouts[0].status.trainedDate, plannedDate);
+assert.strictEqual(trained[0].workouts[0].status.trainingCount, 1);
+
+// Cannot train the same day twice — toggles back (untrain)
+const untrained = Workouts.markDayStatus(trained, 1, 'A', 'train');
+assert.strictEqual(untrained[0].workouts[0].status.trained, false);
+assert.strictEqual(untrained[0].workouts[0].status.trainedDate, plannedDate);
+assert.strictEqual(untrained[0].workouts[0].status.trainingCount, 0);
+
+// Training again on same day re-marks it
+const retrained = Workouts.markDayStatus(untrained, 1, 'A', 'train');
+assert.strictEqual(retrained[0].workouts[0].status.trained, true);
+assert.strictEqual(retrained[0].workouts[0].status.trainedDate, plannedDate);
+assert.strictEqual(retrained[0].workouts[0].status.trainingCount, 1);
+
+// Cannot train a different workout with the same dayId if already trained today
+const otherWorkout = [
+  ...retrained,
+  {
+    id: 3,
+    active: true,
+    workouts: [{
+      id: 'A',
+      name: 'Treino A (old)',
+      exercises: []
+    }]
+  }
+];
+
+const blocked = Workouts.markDayStatus(otherWorkout, 3, 'A', 'train');
+assert.strictEqual(blocked[1].workouts[0].status.trained, false);
+assert.strictEqual(blocked[1].workouts[0].status.trainedDate || null, null);
 
 const groupedOldWorkouts = Workouts.getOldByYear([
   ...trained,

@@ -53,20 +53,22 @@ const UI = (() => {
     const card = document.createElement("section");
     card.className = "day-status-card";
 
+    const today = new Date().toISOString().slice(0, 10);
+    const trainedToday = status.trained && status.trainedDate === today;
     const trainingCount = Number(status.trainingCount) || 0;
-    const summary = status.trained
-      ? `Treinada em ${Workouts.formatDate(status.trainedDate)} · ${trainingCount}x treinada`
-      : status.planned
-        ? `Vai treinar hoje`
-        : "Ainda não marcada";
+    const summary = trainedToday
+      ? `Treinada hoje · ${trainingCount}x treinada`
+      : status.trainedDate
+        ? `Treinada ${formatWeekday(status.trainedDate)}`
+        : "Ficha nova";
 
     const actionsRow = document.createElement("div");
     actionsRow.className = "day-status-actions";
 
     const trainButton = document.createElement("button");
-    trainButton.className = `status-button${status.trained ? " is-active" : ""}`;
+    trainButton.className = `status-button${trainedToday ? " is-active" : ""}`;
     trainButton.type = "button";
-    trainButton.textContent = status.trained ? "Treinada" : "Ficha treinada";
+    trainButton.textContent = trainedToday ? "Treinada ✔" : "Status";
     trainButton.addEventListener("click", () => {
       actions.markDayStatus(workoutId, day.id, "train");
     });
@@ -416,6 +418,13 @@ const UI = (() => {
       .replaceAll(">", "&gt;")
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
+  }
+
+  function formatWeekday(dateStr) {
+    if (!dateStr) return "";
+    const [year, month, day] = dateStr.split("-");
+    const date = new Date(Number(year), Number(month) - 1, Number(day));
+    return date.toLocaleDateString("pt-BR", { weekday: "long" });
   }
 
   return {

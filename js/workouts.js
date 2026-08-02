@@ -126,7 +126,13 @@ const Workouts = (() => {
         return Boolean(candidateStatus.trained && candidateStatus.trainedDate === today);
       });
 
-      if (alreadyTrainedToday || status.trainedDate === today) {
+      if (alreadyTrainedToday) {
+        return workouts;
+      }
+
+      if (status.trained && status.trainedDate === today) {
+        status.trained = false;
+        status.trainingCount = Math.max((Number(status.trainingCount) || 0) - 1, 0);
         return workouts;
       }
 
