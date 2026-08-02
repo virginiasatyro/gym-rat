@@ -321,40 +321,6 @@ const Workouts = (() => {
     return total / numbers.length;
   }
 
-  function getWeightTrend(exercise) {
-    const history = getWeightEntries(exercise);
-
-    if (history.length < 2) {
-      return {
-        label: "Sem comparacao",
-        type: "neutral"
-      };
-    }
-
-    const previous = Number(history[history.length - 2].weight);
-    const current = Number(history[history.length - 1].weight);
-    const difference = current - previous;
-
-    if (difference > 0) {
-      return {
-        label: `+${formatWeight(difference)} kg`,
-        type: "up"
-      };
-    }
-
-    if (difference < 0) {
-      return {
-        label: `${formatWeight(difference)} kg`,
-        type: "down"
-      };
-    }
-
-    return {
-      label: "Igual",
-      type: "neutral"
-    };
-  }
-
   function formatWeight(weight) {
     const value = Number(weight);
     return Number.isInteger(value) ? String(value) : value.toFixed(1);
@@ -375,12 +341,6 @@ const Workouts = (() => {
     return history.filter((entry) => Number.isFinite(Number(entry.weight)));
   }
 
-  function formatDate(date) {
-    if (!date) return "";
-    const [year, month, day] = date.split("-");
-    return `${day}/${month}`;
-  }
-
   function getEvolution(exercise) {
     const entries = getWeightEntries(exercise);
     if (entries.length < 2) return null;
@@ -393,21 +353,26 @@ const Workouts = (() => {
     return current - first;
   }
 
+  function formatDate(date) {
+    if (!date) return "";
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}`;
+  }
+
   return {
     addWeight,
     canEditWeights,
     findDay,
     getActive,
     getDayStatus,
+    getEvolution,
     getLastWeight,
     getOld,
     getOldByYear,
     getExerciseName,
-    getEvolution,
     getPrCategories,
     getStableExerciseId,
     getStats,
-    getWeightTrend,
     markDayStatus,
     saveExerciseComment,
     formatWeight,

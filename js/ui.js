@@ -176,7 +176,6 @@ const UI = (() => {
     const restLabel = exercise.rest != null && exercise.rest !== "" ? ` · Descanso: ${exercise.rest} s` : "";
     const stats = Workouts.getStats(exercise);
     const prCategories = Workouts.getPrCategories(exercise, allWorkouts);
-    const trend = Workouts.getWeightTrend(exercise);
     const evolution = Workouts.getEvolution(exercise);
     const historyId = `history-${workoutId}-${dayId}-${exercise.id}`;
     const timerId = `timer-${workoutId}-${dayId}-${exercise.id}`;
@@ -205,10 +204,6 @@ const UI = (() => {
         <div>
           <dt>PR &gt;12</dt>
           <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} kg`}</dd>
-        </div>
-        <div>
-          <dt>Variacao</dt>
-          <dd class="trend trend-${trend.type}">${escapeHtml(trend.label)}</dd>
         </div>
         <div>
           <dt>Evolucao</dt>

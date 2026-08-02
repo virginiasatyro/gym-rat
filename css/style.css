@@ -388,10 +388,6 @@ body.dark-theme .day-c {
   color: var(--danger);
 }
 
-.trend-neutral {
-  color: var(--muted);
-}
-
 body.dark-theme .trend-up {
   color: #6ee094;
 }

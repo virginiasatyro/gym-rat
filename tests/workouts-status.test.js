@@ -99,7 +99,7 @@ const exerciseWithHistory = {
 const categories = Workouts.getPrCategories(exerciseWithHistory);
 assert.strictEqual(categories.medium, 60); // absolute PR
 
-// Evolution compares first vs current weight
+// Evolution compares current vs first weight
 assert.strictEqual(Workouts.getEvolution(exerciseWithHistory), 20); // 60 - 40
 
 const exerciseNoHistory = { id: 2, name: 'Novo', reps: '12' };
