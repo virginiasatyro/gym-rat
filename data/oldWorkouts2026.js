@@ -1,5 +1,58 @@
 window.OLD_WORKOUTS_2026 = [
   {
+    id: 3,
+    year: 2026,
+    name: "Treino Junho-Julho 2026",
+    active: false,
+    workouts: [
+      {
+        id: "A",
+        name: "Treino A",
+        exercises: [
+          { id: 1, name: "Supino Reto com Halteres", exerciseId: "supino-reto-halteres", sets: 3, reps: "8", rest: 60, lastWeight: 12, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 10 }, { date: "2026-07-01", weight: 10 }, { date: "2026-07-09", weight: 12 }, { date: "2026-07-15", weight: 12 }, { date: "2026-07-23", weight: 12 }, { date: "2026-08-02", weight: 12 }] },
+          { id: 2, name: "Supino Inclinado com Halteres", exerciseId: "supino-inclinado-halteres", sets: 3, reps: "8", rest: 60, lastWeight: 12, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 10 }, { date: "2026-07-01", weight: 10 }, { date: "2026-07-09", weight: 10 }, { date: "2026-07-15", weight: 10 }, { date: "2026-07-23", weight: 12 }, { date: "2026-08-02", weight: 12 }] },
+          { id: 3, name: "Triceps na Polia com Barra Reta", exerciseId: "triceps-polia-barra-reta", sets: 3, reps: "8", rest: 60, lastWeight: 38, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 34 }, { date: "2026-07-01", weight: 36 }, { date: "2026-07-09", weight: 38 }, { date: "2026-07-15", weight: 37 }, { date: "2026-07-23", weight: 37 }, { date: "2026-08-02", weight: 37 }, { date: "2026-08-02", weight: 38 }] },
+          { id: 4, name: "Triceps Frances na Polia com Corda", exerciseId: "triceps-polia-corda", sets: 3, reps: "8", rest: 60, lastWeight: 19, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 22 }, { date: "2026-07-01", weight: 18 }, { date: "2026-07-09", weight: 19 }, { date: "2026-07-15", weight: 19 }, { date: "2026-07-23", weight: 19 }, { date: "2026-08-02", weight: 19 }] },
+          { id: 5, name: "Desenvolvimento Arnold Sentado", exerciseId: "desenvolvimento-arnold-sentado", sets: 3, reps: "8", rest: 60, lastWeight: 8, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 7 }, { date: "2026-07-01", weight: 7 }, { date: "2026-07-09", weight: 7 }, { date: "2026-07-15", weight: 7 }, { date: "2026-07-23", weight: 8 }, { date: "2026-08-02", weight: 8 }] },
+          { id: 6, name: "Elevacao Frontal com Halteres", exerciseId: "elevacao-frontal-halteres", sets: 3, reps: "8", rest: 60, lastWeight: 6, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 6 }, { date: "2026-07-01", weight: 6 }, { date: "2026-07-09", weight: 6 }, { date: "2026-07-15", weight: 6 }, { date: "2026-07-23", weight: 6 }, { date: "2026-08-02", weight: 6 }] },
+          { id: 7, name: "Afundo com Step", exerciseId: "afundo-step", sets: 3, reps: "8", rest: 60, lastWeight: 18, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 10 }, { date: "2026-07-01", weight: 10 }, { date: "2026-07-09", weight: 18 }, { date: "2026-07-15", weight: 18 }, { date: "2026-07-23", weight: 18 }, { date: "2026-08-02", weight: 18 }] },
+          { id: 8, name: "Cadeira Extensora", exerciseId: "cadeira-extensora", sets: 3, reps: "8", rest: 60, lastWeight: 88, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-22", weight: 79 }, { date: "2026-07-01", weight: 79 }, { date: "2026-07-09", weight: 82 }, { date: "2026-07-15", weight: 82 }, { date: "2026-07-23", weight: 84 }, { date: "2026-08-02", weight: 84 }, { date: "2026-08-02", weight: 88 }] }
+        ],
+        status: { planned: true, trained: true, plannedDate: "2026-07-15", trainedDate: "2026-08-02", trainingCount: 4, comment: "" }
+      },
+      {
+        id: "B",
+        name: "Treino B",
+        exercises: [
+          { id: 9, name: "Puxada Aberta Barra Reta", exerciseId: "puxada-aberta-barra-reta", sets: 3, reps: "8", rest: 60, lastWeight: 42, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 40 }, { date: "2026-07-03", weight: 42 }, { date: "2026-07-11", weight: 42 }, { date: "2026-07-18", weight: 42 }, { date: "2026-07-25", weight: 42 }] },
+          { id: 10, name: "Crucifixo Inverso Sentado", exerciseId: "crucifixo-inverso-sentado", sets: 3, reps: "8", rest: 60, lastWeight: 6, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 6 }, { date: "2026-07-03", weight: 6 }, { date: "2026-07-11", weight: 6 }, { date: "2026-07-18", weight: 6 }, { date: "2026-07-25", weight: 6 }] },
+          { id: 11, name: "Rosca Zottman", exerciseId: "rosca-zottman", sets: 3, reps: "8", rest: 60, lastWeight: 7, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 6 }, { date: "2026-07-03", weight: 6 }, { date: "2026-07-11", weight: 6 }, { date: "2026-07-18", weight: 7 }, { date: "2026-07-25", weight: 7 }] },
+          { id: 12, name: "Rosca Concentrada", exerciseId: "rosca-concentrada", sets: 3, reps: "8", rest: 60, lastWeight: 7, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 6 }, { date: "2026-07-03", weight: 7 }, { date: "2026-07-11", weight: 7 }, { date: "2026-07-18", weight: 7 }, { date: "2026-07-25", weight: 7 }] },
+          { id: 13, name: "Elevacao Lateral com Halteres", exerciseId: "elevacao-lateral-halteres", sets: 3, reps: "8", rest: 60, lastWeight: 7, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 7 }, { date: "2026-07-03", weight: 7 }, { date: "2026-07-11", weight: 7 }, { date: "2026-07-18", weight: 7 }, { date: "2026-07-25", weight: 7 }] },
+          { id: 14, name: "Encolhimento de Ombros com Barra Reta", exerciseId: "encolhimento-ombros-barra-reta", sets: 3, reps: "8", rest: 60, lastWeight: 15, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 7.5 }, { date: "2026-07-03", weight: 10 }, { date: "2026-07-11", weight: 12.5 }, { date: "2026-07-18", weight: 15 }, { date: "2026-07-25", weight: 15 }] },
+          { id: 15, name: "Bom Dia", exerciseId: "bom-dia", sets: 3, reps: "8", rest: 60, lastWeight: 5, lastWeightDate: "2026-07-18", history: [{ date: "2026-06-24", weight: 5 }, { date: "2026-07-03", weight: 5 }, { date: "2026-07-11", weight: 5 }, { date: "2026-07-18", weight: 5 }] },
+          { id: 16, name: "Cadeira Flexora", exerciseId: "cadeira-flexora", sets: 3, reps: "8", rest: 60, lastWeight: 64, lastWeightDate: "2026-07-25", history: [{ date: "2026-06-24", weight: 64 }, { date: "2026-07-03", weight: 64 }, { date: "2026-07-11", weight: 64 }, { date: "2026-07-18", weight: 64 }, { date: "2026-07-25", weight: 64 }] }
+        ],
+        status: { planned: true, trained: true, plannedDate: "2026-07-18", trainedDate: "2026-07-25", trainingCount: 2, comment: "" }
+      },
+      {
+        id: "C",
+        name: "Treino C",
+        exercises: [
+          { id: 17, name: "Agachamento Livre com Barra no Suporte", exerciseId: "agachamento-livre-barra-suporte", sets: 3, reps: "8", rest: 90, lastWeight: 12.5, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 7.5 }, { date: "2026-07-08", weight: 10 }, { date: "2026-07-14", weight: 12.5 }, { date: "2026-07-21", weight: 12.5 }, { date: "2026-08-01", weight: 12.5 }, { date: "2026-08-02", weight: 12.5 }] },
+          { id: 18, name: "Agachamento com Barra Hexagonal", exerciseId: "agachamento-barra-hexagonal", sets: 3, reps: "8", rest: 60, lastWeight: 15, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 15 }, { date: "2026-07-08", weight: 15 }, { date: "2026-07-14", weight: 15 }, { date: "2026-07-21", weight: 15 }, { date: "2026-08-01", weight: 15 }, { date: "2026-08-02", weight: 15 }] },
+          { id: 19, name: "Leg Press 45", exerciseId: "leg-press-45", sets: 3, reps: "8", rest: 60, lastWeight: 42.5, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 30 }, { date: "2026-07-08", weight: 35 }, { date: "2026-07-14", weight: 40 }, { date: "2026-07-21", weight: 42.5 }, { date: "2026-08-01", weight: 42.5 }, { date: "2026-08-02", weight: 42.5 }] },
+          { id: 20, name: "Crucifixo Maquina", exerciseId: "crucifixo-maquina", sets: 3, reps: "8", rest: 60, lastWeight: 36, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 32 }, { date: "2026-07-08", weight: 34 }, { date: "2026-07-14", weight: 34 }, { date: "2026-07-21", weight: 36 }, { date: "2026-08-01", weight: 36 }, { date: "2026-08-02", weight: 36 }] },
+          { id: 21, name: "Pegada Neutra Triangulo", exerciseId: "puxada-neutra-triangulo", sets: 3, reps: "8", rest: 60, lastWeight: 42, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 40 }, { date: "2026-07-08", weight: 40 }, { date: "2026-07-14", weight: 40 }, { date: "2026-07-21", weight: 41 }, { date: "2026-08-01", weight: 42 }, { date: "2026-08-02", weight: 42 }] },
+          { id: 22, name: "Aducao de Quadril Maquina", exerciseId: "aducao-quadril-maquina", sets: 3, reps: "8", rest: 60, lastWeight: 50, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 50 }, { date: "2026-07-08", weight: 50 }, { date: "2026-07-14", weight: 50 }, { date: "2026-07-21", weight: 50 }, { date: "2026-08-01", weight: 50 }, { date: "2026-08-02", weight: 50 }] },
+          { id: 23, name: "Abducao de Quadril Maquina", exerciseId: "abducao-quadril-maquina", sets: 3, reps: "8", rest: 60, lastWeight: 60, lastWeightDate: "2026-08-02", history: [{ date: "2026-06-30", weight: 60 }, { date: "2026-07-08", weight: 60 }, { date: "2026-07-14", weight: 60 }, { date: "2026-07-21", weight: 60 }, { date: "2026-08-01", weight: 60 }, { date: "2026-08-02", weight: 60 }] },
+          { id: 24, name: "100 Abdominais", exerciseId: "abdominais", sets: 3, reps: "100", rest: 60, lastWeight: 100, lastWeightDate: "2026-08-02", history: [{ date: "2026-07-21", weight: 100 }, { date: "2026-08-01", weight: 100 }, { date: "2026-08-02", weight: 100 }] }
+        ],
+        status: { planned: true, trained: false, plannedDate: "2026-07-14", trainedDate: "2026-08-02", trainingCount: 3, comment: "" }
+      }
+    ]
+  },
+  {
     id: 2,
     year: 2026,
     name: "Treino Maio-Junho 2026",
