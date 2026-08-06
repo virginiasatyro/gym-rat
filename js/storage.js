@@ -31,7 +31,8 @@ const Storage = (() => {
 
     try {
       const parsed = JSON.parse(saved);
-      const workouts = mergeWithDefaults(Array.isArray(parsed) ? parsed : [], defaults);
+      const versionChanged = savedVersion !== currentVersion;
+      const workouts = mergeWithDefaults(Array.isArray(parsed) ? parsed : [], defaults, versionChanged);
 
       if (savedVersion !== currentVersion || workouts.length !== parsed.length) {
         save(workouts);
@@ -44,7 +45,7 @@ const Storage = (() => {
     }
   }
 
-  function mergeWithDefaults(savedWorkouts, defaultWorkouts) {
+  function mergeWithDefaults(savedWorkouts, defaultWorkouts, refreshActiveWorkout = false) {
     const merged = clone(savedWorkouts);
     const savedById = new Map(merged.map((workout) => [workout.id, workout]));
 
@@ -53,6 +54,12 @@ const Storage = (() => {
 
       if (!savedWorkout) {
         merged.push(clone(defaultWorkout));
+        return;
+      }
+
+      if (refreshActiveWorkout && defaultWorkout.active) {
+        const savedIndex = merged.findIndex((workout) => workout.id === defaultWorkout.id);
+        merged[savedIndex] = clone(defaultWorkout);
         return;
       }
 

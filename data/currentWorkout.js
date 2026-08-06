@@ -1,49 +1,57 @@
-window.DEFAULT_WORKOUTS_VERSION = 2026062704;
+window.DEFAULT_WORKOUTS_VERSION = 2026080601;
 window.CURRENT_WORKOUT = {
   id: 1,
-  name: "Treino Junho-Julho 2026",
+  name: "Treino Agosto-Setembro 2026",
   active: true,
   workouts: [
     {
       id: "A",
       name: "Treino A",
       exercises: [
-        { id: 1, exerciseId: "supino-reto-halteres", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 10 }] },
-        { id: 2, exerciseId: "supino-inclinado-halteres", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 10 }] },
-        { id: 3, exerciseId: "triceps-polia-barra-reta", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 34 }] },
-        { id: 4, exerciseId: "triceps-polia-corda", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 22 }] },
-        { id: 5, exerciseId: "desenvolvimento-arnold-sentado", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 7 }] },
-        { id: 6, exerciseId: "elevacao-frontal-halteres", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 6 }] },
-        { id: 7, exerciseId: "afundo-step", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 10 }] },
-        { id: 8, exerciseId: "cadeira-extensora", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-22", weight: 79 }] }
+        { id: 1, exerciseId: "remada-unilateral-halteres-pegada-neutra-serrote", sets: 3, reps: "12", rest: 60, lastWeight: 0, history: [] },
+        { id: 2, exerciseId: "flexao-quadril-em-pe", sets: 3, reps: "12", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 },
+        { id: 3, exerciseId: "elevacao-y-polia", sets: 3, reps: "12", rest: 60, history: [] },
+        { id: 4, exerciseId: "agachamento-abducao-alternado", sets: 3, reps: "12", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 },
+        { id: 5, exerciseId: "crucifixo-inverso-faixa-elastica", sets: 3, reps: "12", rest: 60, history: [] },
+        { id: 6, exerciseId: "afundo-halteres-entre-steps", sets: 3, reps: "12", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 },
+        { id: 7, exerciseId: "remada-curvada-halteres-pegada-pronada", sets: 3, reps: "12", rest: 60, history: [] },
+        { id: 8, exerciseId: "afundo-unilateral-trx", sets: 3, reps: "12", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 }
       ]
     },
     {
       id: "B",
       name: "Treino B",
       exercises: [
-        { id: 9, exerciseId: "puxada-aberta-barra-reta", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 40 }] },
-        { id: 10, exerciseId: "crucifixo-inverso-sentado", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 6 }] },
-        { id: 11, exerciseId: "rosca-zottman", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 6 }] },
-        { id: 12, exerciseId: "rosca-concentrada", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 6 }] },
-        { id: 13, exerciseId: "elevacao-lateral-halteres", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 7 }] },
-        { id: 14, exerciseId: "encolhimento-ombros-barra-reta", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 7.5 }] },
-        { id: 15, exerciseId: "bom-dia", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 5 }] },
-        { id: 16, exerciseId: "cadeira-flexora", sets: 3, reps: "8", rest: 60, history: [{ date: "2026-06-24", weight: 64 }] }
+        { id: 9, exerciseId: "banco-supino-reto", sets: 3, reps: "5", rest: 90, lastWeight: 10, history: [{ date: "2026-08-06", weight: 10 }] },
+        { type: "rest", name: "Descanso", duration: 90 },
+        { id: 10, exerciseId: "remada-baixa-barra-h", sets: 3, reps: "5", rest: 90, lastWeight: 59, history: [{ date: "2026-08-06", weight: 59 }] },
+        { type: "rest", name: "Descanso", duration: 90 },
+        { id: 11, exerciseId: "agachamento-barra-hexagonal", sets: 3, reps: "5", rest: 90, lastWeight: 17.5, history: [{ date: "2026-08-06", weight: 17.5 }] },
+        { type: "rest", name: "Descanso", duration: 90 },
+        { id: 12, exerciseId: "agachamento-livre-barra-suporte", sets: 3, reps: "5", rest: 90, lastWeight: 12.5, history: [{ date: "2026-08-06", weight: 12.5 }] },
+        { type: "rest", name: "Descanso", duration: 90 }
       ]
     },
     {
       id: "C",
       name: "Treino C",
       exercises: [
-        { id: 17, exerciseId: "agachamento-livre-barra-suporte", sets: 3, reps: "8", rest: 90, history: [] },
-        { id: 18, exerciseId: "agachamento-barra-hexagonal", sets: 3, reps: "8", rest: 60, history: [] },
-        { id: 19, exerciseId: "leg-press-45", sets: 3, reps: "8", rest: 60, history: [] },
-        { id: 20, exerciseId: "crucifixo-maquina", sets: 3, reps: "8", rest: 60, history: [] },
-        { id: 21, exerciseId: "puxada-neutra-triangulo", sets: 3, reps: "8", rest: 60, history: [] },
-        { id: 22, exerciseId: "aducao-quadril-maquina", sets: 3, reps: "8", rest: 60, history: [] },
-        { id: 23, exerciseId: "abducao-quadril-maquina", sets: 3, reps: "8", rest: 60, history: [] },
-        { id: 24, exerciseId: "abdominais", sets: 3, reps: "100", rest: 60, history: [] }
+        { id: 13, exerciseId: "elevacao-frontal-halteres", sets: 3, reps: "10", rest: 60, history: [] },
+        { id: 14, exerciseId: "salto-rotacional-continuo", sets: 3, reps: "20", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 },
+        { id: 15, exerciseId: "elevacao-lateral-halteres", sets: 3, reps: "10", rest: 60, history: [] },
+        { id: 16, exerciseId: "agachamento-com-salto", sets: 3, reps: "20", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 },
+        { id: 17, exerciseId: "triceps-coice-halteres", sets: 3, reps: "10", rest: 60, history: [] },
+        { id: 18, exerciseId: "skipping-step", sets: 3, reps: "20", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 },
+        { id: 19, exerciseId: "rosca-martelo-alternada-halteres", sets: 3, reps: "10", rest: 60, history: [] },
+        { id: 20, exerciseId: "afundo-pliometrico", sets: 3, reps: "20", rest: 60, history: [] },
+        { type: "rest", name: "Descanso", duration: 60 }
       ]
     }
   ]
