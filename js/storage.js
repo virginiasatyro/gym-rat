@@ -47,10 +47,11 @@ const Storage = (() => {
 
   function mergeWithDefaults(savedWorkouts, defaultWorkouts, refreshActiveWorkout = false) {
     const merged = clone(savedWorkouts);
-    const savedById = new Map(merged.map((workout) => [workout.id, workout]));
+    const savedById = new Map(merged.map((workout) => [getWorkoutStorageKey(workout), workout]));
 
     defaultWorkouts.forEach((defaultWorkout) => {
-      const savedWorkout = savedById.get(defaultWorkout.id);
+      const defaultKey = getWorkoutStorageKey(defaultWorkout);
+      const savedWorkout = savedById.get(defaultKey);
 
       if (!savedWorkout) {
         merged.push(clone(defaultWorkout));
@@ -67,6 +68,24 @@ const Storage = (() => {
     });
 
     return merged;
+  }
+
+  function getWorkoutStorageKey(workout) {
+    if (workout.active) {
+      return `active:${workout.id}`;
+    }
+
+    return `${getWorkoutYear(workout)}:${workout.id}`;
+  }
+
+  function getWorkoutYear(workout) {
+    const explicitYear = Number(workout.year);
+    if (Number.isInteger(explicitYear)) return explicitYear;
+
+    const nameYear = String(workout.name || "").match(/\b(20\d{2})\b/);
+    if (nameYear) return Number(nameYear[1]);
+
+    return "unknown";
   }
 
   function hydrateExerciseMetadata(savedWorkout, defaultWorkout) {
