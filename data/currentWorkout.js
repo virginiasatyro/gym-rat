@@ -25,13 +25,13 @@ window.CURRENT_WORKOUT = {
       id: "B",
       name: "Treino B",
       exercises: [
-        { id: 9, exerciseId: "supino-reto-halteres", sets: 3, reps: "5-8", rest: 90, history: [] },
+        { id: 9, exerciseId: "supino-reto-halteres", sets: 4, reps: "5-8", rest: 90, history: [] },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 10, exerciseId: "remada-baixa-polia-neutra", sets: 3, reps: "5-8", rest: 90, history: [] },
+        { id: 10, exerciseId: "remada-baixa-polia-neutra", sets: 4, reps: "5-8", rest: 90, history: [] },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 11, exerciseId: "agachamento-goblet-halter", sets: 3, reps: "8", rest: 90, history: [] },
+        { id: 11, exerciseId: "agachamento-goblet-halter", sets: 4, reps: "8", rest: 90, history: [] },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 12, exerciseId: "agachamento-bulgaro-halteres", sets: 3, reps: "8", rest: 90, history: [] }
+        { id: 12, exerciseId: "agachamento-bulgaro-halteres", sets: 4, reps: "8", rest: 90, history: [] }
       ]
     },
     {
