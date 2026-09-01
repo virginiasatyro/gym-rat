@@ -1,4 +1,4 @@
-window.DEFAULT_WORKOUTS_VERSION = 2026080802;
+﻿window.DEFAULT_WORKOUTS_VERSION = 2026080802;
 window.CURRENT_WORKOUT = {
   id: 1,
   name: "Treino Agosto-Setembro 2026",
@@ -26,13 +26,13 @@ window.CURRENT_WORKOUT = {
       id: "B",
       name: "Treino B",
       exercises: [
-        { id: 9, exerciseId: "banco-supino-reto", sets: 3, reps: "5", rest: 90, lastWeight: 10, history: [{ date: "2026-08-06", weight: 10 }] },
+        { id: 9, exerciseId: "banco-supino-reto", sets: 3, reps: "5", rest: 90, lastWeight: 22, history: [{ date: "2026-08-06", weight: 22 }] },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 10, exerciseId: "remada-baixa-barra-h", sets: 3, reps: "5", rest: 90, lastWeight: 59, history: [{ date: "2026-08-06", weight: 59 }] },
+        { id: 10, exerciseId: "remada-baixa-barra-h", sets: 3, reps: "5", rest: 90, lastWeight: 130.1, history: [{ date: "2026-08-06", weight: 130.1 }] },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 11, exerciseId: "agachamento-barra-hexagonal", sets: 3, reps: "5", rest: 90, lastWeight: 17.5, history: [{ date: "2026-08-06", weight: 17.5 }] },
+        { id: 11, exerciseId: "agachamento-barra-hexagonal", sets: 3, reps: "5", rest: 90, lastWeight: 38.6, history: [{ date: "2026-08-06", weight: 38.6 }] },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 12, exerciseId: "agachamento-livre-barra-suporte", sets: 3, reps: "5", rest: 90, lastWeight: 12.5, history: [{ date: "2026-08-06", weight: 12.5 }] },
+        { id: 12, exerciseId: "agachamento-livre-barra-suporte", sets: 3, reps: "5", rest: 90, lastWeight: 27.6, history: [{ date: "2026-08-06", weight: 27.6 }] },
         { type: "rest", name: "Descanso", duration: 90 }
       ]
     },
@@ -56,3 +56,4 @@ window.CURRENT_WORKOUT = {
     }
   ]
 };
+
