@@ -5,9 +5,12 @@
     const activeWorkout = Workouts.getActive(state.workouts);
     document.getElementById("active-workout-name").textContent = activeWorkout.name;
 
-    renderTabs(activeWorkout, state.selectedDayId, actions);
-    renderCurrentDay(activeWorkout, state.selectedDayId, actions, state.workouts);
-  }
+      // Week indicator (Mon→Sun) above the day tabs
+      renderWeekBar(state.workouts);
+
+      renderTabs(activeWorkout, state.selectedDayId, actions);
+      renderCurrentDay(activeWorkout, state.selectedDayId, actions, state.workouts);
+    }
 
   function renderTabs(activeWorkout, selectedDayId, actions) {
     const tabs = document.getElementById("day-tabs");
@@ -22,6 +25,58 @@
       button.addEventListener("click", () => actions.selectDay(day.id));
       tabs.appendChild(button);
     });
+  }
+
+  // Render a compact week bar with 7 circles (Mon → Sun).
+  // A circle is filled when any workout day in the app has status.trained for that date.
+  function renderWeekBar(workouts) {
+    const parent = document.querySelector('.current-section');
+    if (!parent) return;
+
+    let container = document.getElementById('week-days');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'week-days';
+      container.className = 'week-days';
+      const dayTabs = document.getElementById('day-tabs');
+      parent.insertBefore(container, dayTabs);
+    }
+
+    // Compute this week's Monday (start of week) using local week where Monday is first day
+    const today = new Date();
+    const jsDay = today.getDay(); // 0 Sun .. 6 Sat
+    const daysSinceMonday = (jsDay + 6) % 7; // 0 for Monday, 6 for Sunday
+    const monday = new Date(today);
+    monday.setHours(0,0,0,0);
+    monday.setDate(today.getDate() - daysSinceMonday);
+
+    // Portuguese single-letter labels Mon→Sun: Segunda(S), Terça(T), Quarta(Q), Quinta(Q), Sexta(S), Sábado(S), Domingo(D)
+    const labels = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
+
+    const items = [];
+
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(monday);
+      d.setDate(monday.getDate() + i);
+      const dateStr = d.toISOString().slice(0,10);
+
+      // Consider the day 'trained' if any stored workout day status has trainedDate === dateStr
+      let trained = false;
+
+      (workouts || []).forEach((workout) => {
+        (workout.workouts || []).forEach((day) => {
+          const status = Workouts.getDayStatus(day || { status: {} });
+          if (status && status.trained && status.trainedDate === dateStr) trained = true;
+        });
+      });
+
+      items.push({ label: labels[i], date: dateStr, trained });
+    }
+
+    // Build DOM
+    container.innerHTML = items.map((it) => `
+      <div class="weekday${it.trained ? ' is-trained' : ''}" title="${it.date}">${it.label}</div>
+    `).join('');
   }
 
   function renderCurrentDay(activeWorkout, selectedDayId, actions, allWorkouts) {

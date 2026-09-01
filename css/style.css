@@ -150,6 +150,43 @@ h2 {
   margin-bottom: 16px;
 }
 
+/* Week bar above the day tabs: seven circle letters Mon → Sun */
+.week-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.weekday {
+  justify-self: center;
+  width: min(44px, 100%);
+  height: min(44px, 100%);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--muted);
+  background: transparent;
+}
+
+.weekday.is-trained {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(33,107,76,0.06);
+}
+
+body.dark-theme .weekday.is-trained {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+
 .day-tab,
 .save-button,
 .history-button,
