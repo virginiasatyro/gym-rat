@@ -201,7 +201,7 @@
 
     if (currentGroup.length) {
       groups.push({
-        conjugated: false,
+        conjugated: currentGroup.length >= 2,
         exercises: currentGroup
       });
     }
