@@ -15,14 +15,16 @@ const Storage = (() => {
   }
 
   function getCurrentVersion() {
-    return window.DEFAULT_WORKOUTS_VERSION || 1;
+    // Ensure numeric version comparison to avoid string/formatting edge cases
+    const v = Number(window.DEFAULT_WORKOUTS_VERSION);
+    return Number.isFinite(v) ? v : 1;
   }
 
   function load() {
     const defaults = getDefaults();
     const saved = localStorage.getItem(key);
     const savedVersion = localStorage.getItem(versionKey);
-    const currentVersion = String(getCurrentVersion());
+    const currentVersion = getCurrentVersion();
 
     if (!saved) {
       save(defaults);
@@ -31,10 +33,12 @@ const Storage = (() => {
 
     try {
       const parsed = JSON.parse(saved);
-      const versionChanged = savedVersion !== currentVersion;
+      const savedVersionNum = Number(savedVersion);
+      // Consider the defaults changed when the current version is greater than the stored version
+      const versionChanged = !Number.isFinite(savedVersionNum) || currentVersion > savedVersionNum;
       const workouts = mergeWithDefaults(Array.isArray(parsed) ? parsed : [], defaults, versionChanged);
 
-      if (savedVersion !== currentVersion || workouts.length !== parsed.length) {
+      if (versionChanged || workouts.length !== parsed.length) {
         save(workouts);
       }
 
