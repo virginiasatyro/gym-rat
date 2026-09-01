@@ -102,6 +102,13 @@ const Workouts = (() => {
     return Boolean(status.trained);
   }
 
+  function _localDateString(date = new Date()) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
   function markDayStatus(workouts, workoutId, dayId, type) {
     const workout = workouts.find((item) => item.id === workoutId);
     if (!workout) return workouts;
@@ -110,7 +117,7 @@ const Workouts = (() => {
     if (!day) return workouts;
 
     const status = ensureDayStatus(day);
-    const today = new Date().toISOString().slice(0, 10);
+    const today = _localDateString();
 
     if (type === "plan") {
       status.planned = true;
@@ -187,7 +194,7 @@ const Workouts = (() => {
       exercise.history = [];
     }
 
-    const today = new Date().toISOString().slice(0, 10);
+    const today = _localDateString();
     const lastEntry = exercise.history[exercise.history.length - 1];
 
     if (lastEntry && lastEntry.date === today) {

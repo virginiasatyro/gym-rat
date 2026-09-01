@@ -58,7 +58,12 @@
     for (let i = 0; i < 7; i++) {
       const d = new Date(monday);
       d.setDate(monday.getDate() + i);
-      const dateStr = d.toISOString().slice(0,10);
+      const dateStr = (() => {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
+      })();
 
       // Consider the day 'trained' if any stored workout day status has trainedDate === dateStr
       let trained = false;
