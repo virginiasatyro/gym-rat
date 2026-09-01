@@ -178,7 +178,9 @@ window.EXERCISE_CATALOG = [
   { id: "triceps-frances-unilateral-halteres", name: "Tríceps Francês Unilateral com Halteres" },
   { id: "triceps-polia-barra-w", name: "Tríceps na Polia Barra W" },
   { id: "triceps-testa-barra-w", name: "Triceps Testa com Barra W" },
-  { id: "triceps-testa-halteres", name: "Tríceps Testa com Halteres" }
+  { id: "triceps-testa-halteres", name: "Tríceps Testa com Halteres" },
+  { id: "agachamento-bulgaro-halteres", name: "Agachamento Búlgaro com Halteres" },
+  { id: "agachamento-goblet-halter", name: "Agachamento Goblet com Halter" }
 ];
 
 window.EXERCISE_CATALOG_BY_NAME = window.EXERCISE_CATALOG.reduce((index, exercise) => {
