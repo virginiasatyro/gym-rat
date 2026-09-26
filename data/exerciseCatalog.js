@@ -64,6 +64,7 @@ window.EXERCISE_CATALOG = [
   { id: "remada-alta-barra-w", name: "Remada Alta com Barra W" },
   { id: "agachamento-lateral-alternado", name: "Agachamento Lateral Alternado" },
   { id: "desenvolvimento-smith", name: "Desenvolvimento no Smith" },
+  { id: "desenvolvimento-ombros-maquina", name: "Desenvolvimento Ombros na Maquina" },
   { id: "cadeira-flexora-unilateral", name: "Cadeira Flexora Unilateral", aliases: ["Flexora Unilateral"] },
   { id: "remada-cavalinho-pegada-supinada", name: "Remada Cavalinho (Pegada Supinada)" },
   { id: "flexao-braco-trx", name: "Flexão de Braco TRX" },
