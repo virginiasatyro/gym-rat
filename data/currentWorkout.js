@@ -1,4 +1,4 @@
-﻿window.DEFAULT_WORKOUTS_VERSION = 2026092605;
+﻿window.DEFAULT_WORKOUTS_VERSION = 2026092606;
 window.CURRENT_WORKOUT = {
   id: 1,
   name: "Treino Outubro-Novembro 2026",
