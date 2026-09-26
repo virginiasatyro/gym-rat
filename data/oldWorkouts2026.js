@@ -1,5 +1,524 @@
 window.OLD_WORKOUTS_2026 = [
   {
+    id: 1,
+    year: 2026,
+    name: "Treino Setembro 2026",
+    active: false,
+    gym: "Century Towers",
+    workouts: [
+      {
+        id: "A",
+        name: "Treino A",
+        exercises: [
+          {
+            id: 1,
+            exerciseId: "remada-unilateral-halteres-pegada-neutra-serrote",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            lastWeight: 30,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 25
+              },
+              {
+                date: "2026-09-10",
+                weight: 25
+              },
+              {
+                date: "2026-09-17",
+                weight: 30
+              },
+              {
+                date: "2026-09-24",
+                weight: 30
+              }
+            ],
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            id: 2,
+            exerciseId: "agachamento-bosu",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 20
+              },
+              {
+                date: "2026-09-10",
+                weight: 20
+              },
+              {
+                date: "2026-09-17",
+                weight: 20
+              },
+              {
+                date: "2026-09-24",
+                weight: 20
+              }
+            ],
+            lastWeight: 20,
+            comment: "Leg press 180 lbs",
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 60
+          },
+          {
+            id: 3,
+            exerciseId: "elevacao-y-polia",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 5
+              },
+              {
+                date: "2026-09-10",
+                weight: 7.5
+              },
+              {
+                date: "2026-09-17",
+                weight: 7.5
+              },
+              {
+                date: "2026-09-24",
+                weight: 7.5
+              }
+            ],
+            lastWeight: 7.5,
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            id: 4,
+            exerciseId: "agachamento-sumo-halteres",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 40
+              },
+              {
+                date: "2026-09-10",
+                weight: 50
+              },
+              {
+                date: "2026-09-17",
+                weight: 55
+              },
+              {
+                date: "2026-09-24",
+                weight: 55
+              }
+            ],
+            lastWeight: 55,
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 60
+          },
+          {
+            id: 5,
+            exerciseId: "crucifixo-inverso-halteres",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 20
+              },
+              {
+                date: "2026-09-10",
+                weight: 20
+              },
+              {
+                date: "2026-09-17",
+                weight: 20
+              },
+              {
+                date: "2026-09-24",
+                weight: 20
+              }
+            ],
+            lastWeight: 20,
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            id: 6,
+            exerciseId: "afundo-halteres-entre-steps",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 25
+              },
+              {
+                date: "2026-09-10",
+                weight: 25
+              },
+              {
+                date: "2026-09-17",
+                weight: 25
+              },
+              {
+                date: "2026-09-24",
+                weight: 25
+              }
+            ],
+            lastWeight: 25,
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 60
+          },
+          {
+            id: 7,
+            exerciseId: "remada-curvada-halteres-pegada-pronada",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-08-31",
+                weight: 20
+              },
+              {
+                date: "2026-09-10",
+                weight: 25
+              },
+              {
+                date: "2026-09-17",
+                weight: 25
+              },
+              {
+                date: "2026-09-24",
+                weight: 25
+              }
+            ],
+            lastWeight: 25,
+            lastWeightDate: "2026-09-24"
+          },
+          {
+            id: 8,
+            exerciseId: "agachamento-bulgaro-halteres",
+            sets: 3,
+            reps: "12",
+            rest: 60,
+            history: [
+              {
+                date: "2026-09-10",
+                weight: 30
+              },
+              {
+                date: "2026-09-17",
+                weight: 30
+              },
+              {
+                date: "2026-09-24",
+                weight: 30
+              }
+            ],
+            lastWeight: 30,
+            lastWeightDate: "2026-09-24"
+          }
+        ],
+        status: {
+          planned: true,
+          trained: true,
+          plannedDate: "2026-08-31",
+          trainedDate: "2026-09-24",
+          trainingCount: 4,
+          comment: ""
+        }
+      },
+      {
+        id: "B",
+        name: "Treino B",
+        exercises: [
+          {
+            id: 9,
+            exerciseId: "supino-reto-halteres",
+            sets: 4,
+            reps: "5-8",
+            rest: 90,
+            history: [
+              {
+                date: "2026-09-02",
+                weight: 25
+              },
+              {
+                date: "2026-09-13",
+                weight: 25
+              },
+              {
+                date: "2026-09-20",
+                weight: 30
+              }
+            ],
+            lastWeight: 30,
+            comment: "Chest press 18 kg 40 lbs",
+            lastWeightDate: "2026-09-20"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 90
+          },
+          {
+            id: 10,
+            exerciseId: "remada-baixa-polia-neutra",
+            sets: 4,
+            reps: "5-8",
+            rest: 90,
+            history: [
+              {
+                date: "2026-09-02",
+                weight: 65
+              },
+              {
+                date: "2026-09-13",
+                weight: 65
+              },
+              {
+                date: "2026-09-20",
+                weight: 110
+              }
+            ],
+            lastWeight: 110,
+            comment: "Mid row 95 lbs 43 kg",
+            lastWeightDate: "2026-09-20"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 90
+          },
+          {
+            id: 11,
+            exerciseId: "agachamento-goblet-halter",
+            sets: 4,
+            reps: "8",
+            rest: 90,
+            history: [
+              {
+                date: "2026-09-02",
+                weight: 35
+              },
+              {
+                date: "2026-09-13",
+                weight: 45
+              },
+              {
+                date: "2026-09-20",
+                weight: 45
+              }
+            ],
+            lastWeight: 45,
+            lastWeightDate: "2026-09-20"
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 90
+          },
+          {
+            id: 12,
+            exerciseId: "agachamento-bulgaro-halteres",
+            sets: 4,
+            reps: "8",
+            rest: 90,
+            history: [
+              {
+                date: "2026-09-02",
+                weight: 20
+              },
+              {
+                date: "2026-09-13",
+                weight: 20
+              },
+              {
+                date: "2026-09-20",
+                weight: 20
+              }
+            ],
+            lastWeight: 20,
+            lastWeightDate: "2026-09-20"
+          }
+        ],
+        status: {
+          planned: true,
+          trained: true,
+          plannedDate: "2026-09-02",
+          trainedDate: "2026-09-20",
+          trainingCount: 3,
+          comment: ""
+        }
+      },
+      {
+        id: "C",
+        name: "Treino C",
+        exercises: [
+          {
+            id: 13,
+            exerciseId: "elevacao-frontal-halteres",
+            sets: 3,
+            reps: "10",
+            rest: 60,
+            history: [
+              {
+                date: "2026-09-08",
+                weight: 15
+              },
+              {
+                date: "2026-09-15",
+                weight: 15
+              },
+              {
+                date: "2026-09-22",
+                weight: 15
+              }
+            ],
+            lastWeight: 15,
+            lastWeightDate: "2026-09-22"
+          },
+          {
+            id: 14,
+            exerciseId: "salto-rotacional-continuo",
+            sets: 3,
+            reps: "20",
+            rest: 60,
+            history: []
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 60
+          },
+          {
+            id: 15,
+            exerciseId: "elevacao-lateral-halteres",
+            sets: 3,
+            reps: "10",
+            rest: 60,
+            history: [
+              {
+                date: "2026-09-22",
+                weight: 15
+              }
+            ],
+            lastWeight: 15,
+            lastWeightDate: "2026-09-22"
+          },
+          {
+            id: 16,
+            exerciseId: "agachamento-com-salto",
+            sets: 3,
+            reps: "20",
+            rest: 60,
+            history: []
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 60
+          },
+          {
+            id: 17,
+            exerciseId: "triceps-polia-corda",
+            sets: 3,
+            reps: "10",
+            rest: 60,
+            history: [
+              {
+                date: "2026-09-08",
+                weight: 22.5
+              },
+              {
+                date: "2026-09-15",
+                weight: 22.5
+              },
+              {
+                date: "2026-09-22",
+                weight: 22.5
+              }
+            ],
+            lastWeight: 22.5,
+            lastWeightDate: "2026-09-22"
+          },
+          {
+            id: 18,
+            exerciseId: "skipping-step",
+            sets: 3,
+            reps: "20",
+            rest: 60,
+            history: []
+          },
+          {
+            type: "rest",
+            name: "Descanso",
+            duration: 60
+          },
+          {
+            id: 19,
+            exerciseId: "rosca-martelo-alternada-halteres",
+            sets: 3,
+            reps: "10",
+            rest: 60,
+            history: [
+              {
+                date: "2026-09-08",
+                weight: 20
+              },
+              {
+                date: "2026-09-15",
+                weight: 20
+              },
+              {
+                date: "2026-09-22",
+                weight: 20
+              }
+            ],
+            lastWeight: 20,
+            lastWeightDate: "2026-09-22"
+          },
+          {
+            id: 20,
+            exerciseId: "afundo-pliometrico",
+            sets: 3,
+            reps: "20",
+            rest: 60,
+            history: []
+          }
+        ],
+        status: {
+          planned: true,
+          trained: true,
+          plannedDate: "2026-09-08",
+          trainedDate: "2026-09-22",
+          trainingCount: 3,
+          comment: ""
+        }
+      }
+    ]
+  },
+  {
     id: 6,
     year: 2026,
     name: "Treino Agosto-Setembro 2026",
