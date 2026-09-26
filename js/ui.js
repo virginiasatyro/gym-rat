@@ -1,4 +1,4 @@
-﻿const UI = (() => {
+const UI = (() => {
   let timers = {};
 
   function render(state, actions) {
@@ -249,21 +249,21 @@
         </div>
         <div class="last-weight">
           <span>Ultimo peso</span>
-          <strong>${lastWeight === null ? "-" : `${Workouts.formatWeight(lastWeight)} lbs`}</strong>
+          <strong>${lastWeight === null ? "-" : `${Workouts.formatWeight(lastWeight)} kg`}</strong>
         </div>
       </div>
       <dl class="exercise-stats">
         <div>
           <dt>PR &lt;8</dt>
-          <dd>${prCategories.low === null ? "-" : `${Workouts.formatWeight(prCategories.low)} lbs`}</dd>
+          <dd>${prCategories.low === null ? "-" : `${Workouts.formatWeight(prCategories.low)} kg`}</dd>
         </div>
         <div>
           <dt>PR 8-12</dt>
-          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatWeight(prCategories.medium)} lbs`}</dd>
+          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatWeight(prCategories.medium)} kg`}</dd>
         </div>
         <div>
           <dt>PR &gt;12</dt>
-          <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} lbs`}</dd>
+          <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} kg`}</dd>
         </div>
         <div>
           <dt>Evolucao</dt>
@@ -271,7 +271,7 @@
         </div>
         <div>
           <dt>Media</dt>
-          <dd>${stats.average === null ? "-" : `${Workouts.formatWeight(stats.average)} lbs`}</dd>
+          <dd>${stats.average === null ? "-" : `${Workouts.formatWeight(stats.average)} kg`}</dd>
         </div>
         <div class="comment-stat">
           <dt>Comentário</dt>
@@ -363,7 +363,7 @@
 
     history.forEach((entry) => {
       const item = document.createElement("li");
-      item.innerHTML = `<span>${Workouts.formatDate(entry.date)}</span><strong>${Workouts.formatWeight(entry.weight)} lbs</strong>`;
+      item.innerHTML = `<span>${Workouts.formatDate(entry.date)}</span><strong>${Workouts.formatWeight(entry.weight)} kg</strong>`;
       list.appendChild(item);
     });
 
@@ -494,7 +494,7 @@
     if (num === 0) return "Igual";
     const cls = num > 0 ? "trend-up" : "trend-down";
     const sign = num > 0 ? "+" : "";
-    return `<span class="${cls}">${sign}${Workouts.formatWeight(num)} lbs</span>`;
+    return `<span class="${cls}">${sign}${Workouts.formatWeight(num)} kg</span>`;
   }
 
   return {
@@ -502,4 +502,3 @@
     renderOldWorkouts
   };
 })();
-
