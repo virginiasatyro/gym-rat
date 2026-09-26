@@ -367,7 +367,7 @@ const Workouts = (() => {
     if (kg === null || kg === undefined) return null;
     const value = Number(kg);
     if (!Number.isFinite(value)) return null;
-    return unit === "lb" ? roundToTwo(value * KG_TO_LB) : value;
+    return unit === "lb" ? Math.round(value * KG_TO_LB * 10) / 10 : value;
   }
 
   function formatDisplayWeight(kg, unit) {
