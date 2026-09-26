@@ -340,6 +340,49 @@ const Workouts = (() => {
     return Number.isInteger(value) ? String(value) : value.toFixed(1);
   }
 
+  const KG_TO_LB = 2.2046226218;
+  const LB_TO_KG = 0.45359237;
+
+  function roundToTwo(value) {
+    return Math.round(value * 100) / 100;
+  }
+
+  function getExerciseUnit(exercise) {
+    return exercise && exercise.unit === "lb" ? "lb" : "kg";
+  }
+
+  function getUnitLabel(unit) {
+    return unit === "lb" ? "lb" : "kg";
+  }
+
+  // Converts an entered value in the given unit into canonical kg for storage.
+  function toStorageKg(weight, unit) {
+    const value = Number(weight);
+    if (!Number.isFinite(value)) return value;
+    return unit === "lb" ? roundToTwo(value * LB_TO_KG) : value;
+  }
+
+  // Converts a canonical kg value into the given display unit.
+  function getDisplayWeight(kg, unit) {
+    if (kg === null || kg === undefined) return null;
+    const value = Number(kg);
+    if (!Number.isFinite(value)) return null;
+    return unit === "lb" ? roundToTwo(value * KG_TO_LB) : value;
+  }
+
+  function formatDisplayWeight(kg, unit) {
+    const value = getDisplayWeight(kg, unit);
+    return value === null ? "" : formatWeight(value);
+  }
+
+  function setExerciseUnit(workouts, workoutId, dayId, exerciseId, unit) {
+    const exercise = findExercise(workouts, workoutId, dayId, exerciseId);
+    if (!exercise) return workouts;
+
+    exercise.unit = unit === "lb" ? "lb" : "kg";
+    return workouts;
+  }
+
   function getWeightEntries(exercise) {
     const history = Array.isArray(exercise.history) ? [...exercise.history] : [];
     const lastWeight = Number(exercise.lastWeight);
@@ -379,7 +422,9 @@ const Workouts = (() => {
     findDay,
     getActive,
     getDayStatus,
+    getDisplayWeight,
     getEvolution,
+    getExerciseUnit,
     getLastWeight,
     getOld,
     getOldByYear,
@@ -387,10 +432,14 @@ const Workouts = (() => {
     getPrCategories,
     getStableExerciseId,
     getStats,
+    getUnitLabel,
     getWorkoutGym,
     markDayStatus,
     saveExerciseComment,
+    setExerciseUnit,
+    formatDisplayWeight,
     formatWeight,
-    formatDate
+    formatDate,
+    toStorageKg
   };
 })();

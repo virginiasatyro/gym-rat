@@ -242,6 +242,8 @@ const UI = (() => {
     const exerciseName = Workouts.getExerciseName(exercise);
     const restLabel = exercise.rest != null && exercise.rest !== "" ? ` · Descanso: ${exercise.rest} s` : "";
     const gym = Workouts.getWorkoutGym(workout);
+    const unit = Workouts.getExerciseUnit(exercise);
+    const unitLabel = Workouts.getUnitLabel(unit);
     const stats = Workouts.getStats(exercise);
     const prCategories = Workouts.getPrCategories(exercise, allWorkouts, gym);
     const evolution = Workouts.getEvolution(exercise);
@@ -257,29 +259,29 @@ const UI = (() => {
         </div>
         <div class="last-weight">
           <span>Ultimo peso</span>
-          <strong>${lastWeight === null ? "-" : `${Workouts.formatWeight(lastWeight)} kg`}</strong>
+          <strong>${lastWeight === null ? "-" : `${Workouts.formatDisplayWeight(lastWeight, unit)} ${unitLabel}`}</strong>
         </div>
       </div>
       <dl class="exercise-stats">
         <div>
           <dt>PR &lt;8</dt>
-          <dd>${prCategories.low === null ? "-" : `${Workouts.formatWeight(prCategories.low)} kg`}</dd>
+          <dd>${prCategories.low === null ? "-" : `${Workouts.formatDisplayWeight(prCategories.low, unit)} ${unitLabel}`}</dd>
         </div>
         <div>
           <dt>PR 8-12</dt>
-          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatWeight(prCategories.medium)} kg`}</dd>
+          <dd>${prCategories.medium === null ? "-" : `${Workouts.formatDisplayWeight(prCategories.medium, unit)} ${unitLabel}`}</dd>
         </div>
         <div>
           <dt>PR &gt;12</dt>
-          <dd>${prCategories.high === null ? "-" : `${Workouts.formatWeight(prCategories.high)} kg`}</dd>
+          <dd>${prCategories.high === null ? "-" : `${Workouts.formatDisplayWeight(prCategories.high, unit)} ${unitLabel}`}</dd>
         </div>
         <div>
           <dt>Evolucao</dt>
-          <dd>${renderEvolution(evolution)}</dd>
+          <dd>${renderEvolution(evolution, unit)}</dd>
         </div>
         <div>
           <dt>Media</dt>
-          <dd>${stats.average === null ? "-" : `${Workouts.formatWeight(stats.average)} kg`}</dd>
+          <dd>${stats.average === null ? "-" : `${Workouts.formatDisplayWeight(stats.average, unit)} ${unitLabel}`}</dd>
         </div>
         <div class="comment-stat">
           <dt>Comentário</dt>
@@ -294,21 +296,27 @@ const UI = (() => {
       const form = document.createElement("form");
       form.className = "weight-form";
       form.innerHTML = `
+        <select class="unit-select" aria-label="Unidade do peso">
+          <option value="kg"${unit === "kg" ? " selected" : ""}>kg</option>
+          <option value="lb"${unit === "lb" ? " selected" : ""}>lb</option>
+        </select>
         <input class="weight-input" type="number" min="0" step="0.5" inputmode="decimal" placeholder="Novo peso">
         <button class="save-button save-${dayId.toLowerCase()}" type="submit">Salvar</button>
       `;
 
       form.addEventListener("submit", (event) => {
         event.preventDefault();
-        const input = form.querySelector("input");
+        const input = form.querySelector(".weight-input");
+        const select = form.querySelector(".unit-select");
         const value = Number(input.value);
+        const selectedUnit = select ? select.value : "kg";
 
         if (!Number.isFinite(value) || value <= 0) {
           input.focus();
           return;
         }
 
-        actions.saveWeight(workoutId, dayId, exercise.id, value);
+        actions.saveWeight(workoutId, dayId, exercise.id, value, selectedUnit);
       });
 
       card.appendChild(form);
@@ -352,13 +360,13 @@ const UI = (() => {
     const history = document.createElement("div");
     history.className = "history";
     history.id = historyId;
-    history.appendChild(renderHistory(exercise.history || []));
+    history.appendChild(renderHistory(exercise.history || [], unit));
     card.appendChild(history);
 
     return card;
   }
 
-  function renderHistory(history) {
+  function renderHistory(history, unit) {
     if (!history.length) {
       const empty = document.createElement("p");
       empty.className = "empty-state";
@@ -366,12 +374,13 @@ const UI = (() => {
       return empty;
     }
 
+    const unitLabel = Workouts.getUnitLabel(unit);
     const list = document.createElement("ul");
     list.className = "history-list";
 
     history.forEach((entry) => {
       const item = document.createElement("li");
-      item.innerHTML = `<span>${Workouts.formatDate(entry.date)}</span><strong>${Workouts.formatWeight(entry.weight)} kg</strong>`;
+      item.innerHTML = `<span>${Workouts.formatDate(entry.date)}</span><strong>${Workouts.formatDisplayWeight(entry.weight, unit)} ${unitLabel}</strong>`;
       list.appendChild(item);
     });
 
@@ -497,14 +506,14 @@ const UI = (() => {
     return date.toLocaleDateString("pt-BR", { weekday: "long" });
   }
 
-  function renderEvolution(evolution) {
+  function renderEvolution(evolution, unit) {
     if (evolution === null || evolution === undefined) return "-";
     const num = Number(evolution);
     if (!Number.isFinite(num)) return "-";
     if (num === 0) return "Igual";
     const cls = num > 0 ? "trend-up" : "trend-down";
     const sign = num > 0 ? "+" : "";
-    return `<span class="${cls}">${sign}${Workouts.formatWeight(num)} kg</span>`;
+    return `<span class="${cls}">${sign}${Workouts.formatDisplayWeight(num, unit)} ${Workouts.getUnitLabel(unit)}</span>`;
   }
 
   return {

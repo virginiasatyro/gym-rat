@@ -538,7 +538,7 @@ body.dark-theme .trend-up {
 
 .weight-form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 8px;
   margin-top: 12px;
 }
@@ -549,6 +549,15 @@ body.dark-theme .trend-up {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 0 12px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.unit-select {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 8px;
   background: var(--surface);
   color: var(--text);
 }

@@ -29,7 +29,7 @@ const App = (() => {
     render();
   }
 
-  function saveWeight(workoutId, dayId, exerciseId, weight) {
+  function saveWeight(workoutId, dayId, exerciseId, weight, unit) {
     const workout = state.workouts.find((item) => item.id === workoutId);
     const day = workout ? Workouts.findDay(workout, dayId) : null;
 
@@ -37,7 +37,11 @@ const App = (() => {
       return;
     }
 
-    state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, weight);
+    const resolvedUnit = unit === "lb" ? "lb" : "kg";
+    const weightKg = Workouts.toStorageKg(weight, resolvedUnit);
+
+    state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, weightKg);
+    state.workouts = Workouts.setExerciseUnit(state.workouts, workoutId, dayId, exerciseId, resolvedUnit);
     Storage.save(state.workouts);
     render();
   }

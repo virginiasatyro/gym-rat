@@ -203,4 +203,25 @@ assert.strictEqual(centuryPr.medium, 100);
 const noGymCategories = Workouts.getPrCategories(dtoxBench);
 assert.strictEqual(noGymCategories.medium, 40);
 
+// Weight unit conversion helpers
+assert.strictEqual(Workouts.toStorageKg(45, 'lb'), 20.41);
+assert.strictEqual(Workouts.toStorageKg(20, 'kg'), 20);
+assert.strictEqual(Workouts.getDisplayWeight(20.41, 'lb'), 45);
+assert.strictEqual(Workouts.formatDisplayWeight(20.41, 'lb'), '45');
+assert.strictEqual(Workouts.getExerciseUnit({ unit: 'lb' }), 'lb');
+assert.strictEqual(Workouts.getExerciseUnit({}), 'kg');
+assert.strictEqual(Workouts.getUnitLabel('lb'), 'lb');
+
+const unitWorkouts = [{
+  id: 20,
+  active: true,
+  workouts: [{
+    id: 'A',
+    name: 'Treino A',
+    exercises: [{ id: 1, name: 'Supino', reps: '8', history: [] }]
+  }]
+}];
+Workouts.setExerciseUnit(unitWorkouts, 20, 'A', 1, 'lb');
+assert.strictEqual(unitWorkouts[0].workouts[0].exercises[0].unit, 'lb');
+
 console.log('workouts-status test passed');
