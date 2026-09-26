@@ -146,4 +146,61 @@ assert.strictEqual(autoFilled[0].workouts[0].exercises[1].history.length, 2);
 assert.strictEqual(autoFilled[0].workouts[0].exercises[1].history[1].weight, 100);
 assert.strictEqual(autoFilled[0].workouts[0].exercises[1].history[1].date, today);
 
+// PRs are scoped to the same gym
+const dtoxBench = {
+  id: 1,
+  name: 'Supino',
+  reps: '8-10',
+  exerciseId: 'bench-press',
+  history: [{ date: '2025-01-01', weight: 40 }]
+};
+
+const gymScopedWorkouts = [
+  {
+    id: 11,
+    gym: 'DTox',
+    workouts: [{ id: 'A', name: 'Treino A', exercises: [dtoxBench] }]
+  },
+  {
+    id: 12,
+    gym: 'DTox',
+    workouts: [{
+      id: 'A',
+      name: 'Treino A',
+      exercises: [{
+        id: 2,
+        name: 'Supino',
+        reps: '8-10',
+        exerciseId: 'bench-press',
+        history: [{ date: '2025-01-02', weight: 60 }]
+      }]
+    }]
+  },
+  {
+    id: 13,
+    gym: 'Century Towers',
+    workouts: [{
+      id: 'A',
+      name: 'Treino A',
+      exercises: [{
+        id: 3,
+        name: 'Supino',
+        reps: '8-10',
+        exerciseId: 'bench-press',
+        history: [{ date: '2025-01-03', weight: 100 }]
+      }]
+    }]
+  }
+];
+
+const dtoxPr = Workouts.getPrCategories(dtoxBench, gymScopedWorkouts, 'DTox');
+assert.strictEqual(dtoxPr.medium, 60); // 100 from Century Towers must not leak in
+
+const centuryPr = Workouts.getPrCategories(gymScopedWorkouts[2].workouts[0].exercises[0], gymScopedWorkouts, 'Century Towers');
+assert.strictEqual(centuryPr.medium, 100);
+
+// Without a gym filter, matching falls back to the exercise itself when no workouts are passed
+const noGymCategories = Workouts.getPrCategories(dtoxBench);
+assert.strictEqual(noGymCategories.medium, 40);
+
 console.log('workouts-status test passed');

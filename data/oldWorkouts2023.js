@@ -4,6 +4,7 @@ window.OLD_WORKOUTS_2023 = [
     year: 2023,
     name: "Treino Novembro-Dezembro 2023",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "1",
@@ -66,6 +67,7 @@ window.OLD_WORKOUTS_2023 = [
     year: 2023,
     name: "Treino Setembro-Outubro 2023",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "1",

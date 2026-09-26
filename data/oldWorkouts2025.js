@@ -4,6 +4,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Novembro-Dezembro 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -66,6 +67,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Setembro-Novembro 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -130,6 +132,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Agosto-Setembro 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -181,6 +184,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Junho-Agosto 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -241,6 +245,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Maio-Junho 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -291,6 +296,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Abril-Maio 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -356,6 +362,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Marco-Abril 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -412,6 +419,7 @@ window.OLD_WORKOUTS_2025 = [
     year: 2025,
     name: "Treino Janeiro-Fevereiro 2025",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",

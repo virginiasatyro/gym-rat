@@ -68,6 +68,7 @@ const Storage = (() => {
         return;
       }
 
+      hydrateWorkoutMetadata(savedWorkout, defaultWorkout);
       hydrateExerciseMetadata(savedWorkout, defaultWorkout);
     });
 
@@ -90,6 +91,12 @@ const Storage = (() => {
     if (nameYear) return Number(nameYear[1]);
 
     return "unknown";
+  }
+
+  function hydrateWorkoutMetadata(savedWorkout, defaultWorkout) {
+    if (!savedWorkout.gym && defaultWorkout.gym) {
+      savedWorkout.gym = defaultWorkout.gym;
+    }
   }
 
   function hydrateExerciseMetadata(savedWorkout, defaultWorkout) {

@@ -3,6 +3,7 @@ window.CURRENT_WORKOUT = {
   id: 1,
   name: "Treino Setembro-Outubro 2026",
   active: true,
+  gym: "Century Towers",
   workouts: [
     {
       id: "A",

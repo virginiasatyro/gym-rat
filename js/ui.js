@@ -5,6 +5,13 @@ const UI = (() => {
     const activeWorkout = Workouts.getActive(state.workouts);
     document.getElementById("active-workout-name").textContent = activeWorkout.name;
 
+    const gymBadge = document.getElementById("active-workout-gym");
+    if (gymBadge) {
+      const gym = Workouts.getWorkoutGym(activeWorkout);
+      gymBadge.textContent = gym || "";
+      gymBadge.hidden = !gym;
+    }
+
       // Week indicator (Mon→Sun) above the day tabs
       renderWeekBar(state.workouts);
 
@@ -102,7 +109,7 @@ const UI = (() => {
     list.className = "exercise-list";
 
     buildExerciseGroups(day.exercises).forEach((group) => {
-      list.appendChild(renderExerciseGroup(activeWorkout.id, day.id, group, false, Workouts.canEditWeights(day), actions, allWorkouts, day));
+      list.appendChild(renderExerciseGroup(activeWorkout.id, day.id, group, false, Workouts.canEditWeights(day), actions, allWorkouts, day, activeWorkout));
     });
 
     container.appendChild(list);
@@ -145,14 +152,14 @@ const UI = (() => {
     return card;
   }
 
-  function renderExerciseGroup(workoutId, dayId, group, readonly, canEditWeights, actions, allWorkouts = [], day = null) {
+  function renderExerciseGroup(workoutId, dayId, group, readonly, canEditWeights, actions, allWorkouts = [], day = null, workout = null) {
     const exercises = group.exercises || [];
 
     if (!isConjugatedGroup(group)) {
       const fragment = document.createDocumentFragment();
 
       exercises.forEach((exercise) => {
-        fragment.appendChild(renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts, day));
+        fragment.appendChild(renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts, day, workout));
       });
 
       return fragment;
@@ -172,7 +179,7 @@ const UI = (() => {
     exercises.forEach((exercise) => {
       const item = document.createElement("div");
       item.className = "conjugated-group-item";
-      item.appendChild(renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts, day));
+      item.appendChild(renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts, day, workout));
       items.appendChild(item);
     });
 
@@ -213,7 +220,7 @@ const UI = (() => {
     return Boolean(group.conjugated);
   }
 
-  function renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts = [], day = null) {
+  function renderExercise(workoutId, dayId, exercise, readonly, canEditWeights, actions, allWorkouts = [], day = null, workout = null) {
     if (exercise.type === "rest") {
       const card = document.createElement("article");
       card.className = "exercise-card rest-card";
@@ -234,8 +241,9 @@ const UI = (() => {
     const lastWeight = Workouts.getLastWeight(exercise);
     const exerciseName = Workouts.getExerciseName(exercise);
     const restLabel = exercise.rest != null && exercise.rest !== "" ? ` · Descanso: ${exercise.rest} s` : "";
+    const gym = Workouts.getWorkoutGym(workout);
     const stats = Workouts.getStats(exercise);
-    const prCategories = Workouts.getPrCategories(exercise, allWorkouts);
+    const prCategories = Workouts.getPrCategories(exercise, allWorkouts, gym);
     const evolution = Workouts.getEvolution(exercise);
     const historyId = `history-${workoutId}-${dayId}-${exercise.id}`;
     const timerId = `timer-${workoutId}-${dayId}-${exercise.id}`;
@@ -414,7 +422,9 @@ const UI = (() => {
         const button = document.createElement("button");
         button.className = "old-button";
         button.type = "button";
-        button.innerHTML = `<span>${escapeHtml(workout.name)}</span><span>Ver</span>`;
+        const gym = Workouts.getWorkoutGym(workout);
+        const gymBadge = gym ? `<span class="gym-badge">${escapeHtml(gym)}</span>` : "";
+        button.innerHTML = `<span>${escapeHtml(workout.name)}${gymBadge}</span><span>Ver</span>`;
         button.addEventListener("click", () => {
           document.getElementById(contentId).classList.toggle("is-open");
         });
@@ -431,7 +441,7 @@ const UI = (() => {
           buildExerciseGroups(day.exercises).forEach((group) => {
             const item = document.createElement("div");
             item.className = "old-exercise";
-            item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, false, {}, allWorkouts, day));
+            item.appendChild(renderExerciseGroup(workout.id, day.id, group, true, false, {}, allWorkouts, day, workout));
             dayBlock.appendChild(item);
           });
 

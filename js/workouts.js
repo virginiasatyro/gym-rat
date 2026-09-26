@@ -243,14 +243,14 @@ const Workouts = (() => {
     };
   }
 
-  function getPrCategories(exercise, workouts = []) {
+  function getPrCategories(exercise, workouts = [], gym = null) {
     const categories = {
       low: null,
       medium: null,
       high: null
     };
 
-    const matchingExercises = getMatchingExercises(workouts, exercise);
+    const matchingExercises = getMatchingExercises(workouts, exercise, gym);
 
     if (!matchingExercises.length) {
       matchingExercises.push(exercise);
@@ -268,12 +268,15 @@ const Workouts = (() => {
     return categories;
   }
 
-  function getMatchingExercises(workouts, exercise) {
+  function getMatchingExercises(workouts, exercise, gym = null) {
     const stableId = getStableExerciseId(exercise);
     const exerciseName = normalizeName(getExerciseName(exercise));
     const matches = [];
 
     workouts.forEach((workout) => {
+      const workoutGym = getWorkoutGym(workout);
+      if (workoutGym !== gym) return;
+
       (workout.workouts || []).forEach((day) => {
         (day.exercises || []).forEach((candidate) => {
           const sameStableId = stableId && getStableExerciseId(candidate) === stableId;
@@ -287,6 +290,10 @@ const Workouts = (() => {
     });
 
     return matches;
+  }
+
+  function getWorkoutGym(workout) {
+    return workout && typeof workout.gym === "string" ? workout.gym : null;
   }
 
   function normalizeName(name) {
@@ -380,6 +387,7 @@ const Workouts = (() => {
     getPrCategories,
     getStableExerciseId,
     getStats,
+    getWorkoutGym,
     markDayStatus,
     saveExerciseComment,
     formatWeight,

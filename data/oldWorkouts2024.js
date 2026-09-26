@@ -4,6 +4,7 @@ window.OLD_WORKOUTS_2024 = [
     year: 2024,
     name: "Treino Novembro-Dezembro 2024",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -48,6 +49,7 @@ window.OLD_WORKOUTS_2024 = [
     year: 2024,
     name: "Treino Setembro-Outubro 2024",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "A",
@@ -108,6 +110,7 @@ window.OLD_WORKOUTS_2024 = [
     year: 2024,
     name: "Treino Julho-Agosto 2024",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "1",
@@ -179,6 +182,7 @@ window.OLD_WORKOUTS_2024 = [
     year: 2024,
     name: "Treino Maio-Julho 2024",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "1",
@@ -211,6 +215,7 @@ window.OLD_WORKOUTS_2024 = [
     year: 2024,
     name: "Treino Marco-Abril 2024",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "1",
@@ -266,6 +271,7 @@ window.OLD_WORKOUTS_2024 = [
     year: 2024,
     name: "Treino Fevereiro-Marco 2024",
     active: false,
+    gym: "DTox",
     workouts: [
       {
         id: "1",
