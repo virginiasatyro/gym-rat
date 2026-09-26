@@ -1,0 +1,57 @@
+PESOS
+├── dumbbells
+├── barbell
+├── ez_bar
+├── kettlebell
+├── plates
+├── medicine_ball
+└── sandbag
+
+CABOS
+├── cable_machine
+├── rope_attachment
+├── straight_bar_attachment
+├── ez_bar_attachment
+├── v_bar_attachment
+├── single_handle_attachment
+├── lat_bar_attachment
+└── ankle_strap
+
+BANDAS
+├── resistance_band
+├── mini_band
+└── long_band
+
+ESTRUTURA
+├── bench
+├── adjustable_bench
+├── squat_rack
+├── pull_up_bar
+├── parallel_bars
+├── dip_station
+├── step
+└── plyo_box
+
+ESTABILIDADE
+├── bosu
+├── stability_ball
+├── balance_board
+├── foam_roller
+├── sliders
+└── parallettes
+
+CORE
+├── ab_wheel
+└── yoga_mat
+
+SUSPENSÃO
+└── trx
+
+CONDICIONAMENTO
+├── jump_rope
+├── treadmill
+├── stationary_bike
+├── rowing_machine
+├── air_bike
+├── sled
+└── battle_rope
