@@ -355,24 +355,25 @@ const Workouts = (() => {
     return unit === "lb" ? "lb" : "kg";
   }
 
-  // Converts an entered value in the given unit into canonical kg for storage.
+  // Keep weights in the selected unit when the exercise is configured for lb.
+  // Imported/exported data already includes its own unit, so avoid silently
+  // converting it to an internal kg value unless there is an explicit migration.
   function toStorageKg(weight, unit) {
     const value = Number(weight);
     if (!Number.isFinite(value)) return value;
-    return unit === "lb" ? roundToTwo(value * LB_TO_KG) : value;
+    return unit === "lb" ? value : value;
   }
 
-  // Converts a canonical kg value into the given display unit.
-  function getDisplayWeight(kg, unit) {
-    if (kg === null || kg === undefined) return null;
-    const value = Number(kg);
-    if (!Number.isFinite(value)) return null;
-    return unit === "lb" ? Math.round(value * KG_TO_LB * 10) / 10 : value;
+  function getDisplayWeight(value, unit) {
+    if (value === null || value === undefined) return null;
+    const numericValue = Number(value);
+    if (!Number.isFinite(numericValue)) return null;
+    return numericValue;
   }
 
-  function formatDisplayWeight(kg, unit) {
-    const value = getDisplayWeight(kg, unit);
-    return value === null ? "" : formatWeight(value);
+  function formatDisplayWeight(value, unit) {
+    const displayValue = getDisplayWeight(value, unit);
+    return displayValue === null ? "" : formatWeight(displayValue);
   }
 
   function setExerciseUnit(workouts, workoutId, dayId, exerciseId, unit) {
