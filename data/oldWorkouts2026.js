@@ -427,5 +427,76 @@ window.OLD_WORKOUTS_2026 = [
         ]
       }
     ]
+  },
+  {
+    id: 7,
+    year: 2026,
+    name: "Treino Outubro-Novembro 2026",
+    active: false,
+    gym: "Century Towers",
+    workouts: [
+      {
+        id: "A",
+        name: "Treino 1",
+        exercises: [
+          { id: 1, exerciseId: "supino-reto-halteres", sets: 3, reps: "5", rest: 90, lastWeight: 30, lastWeightDate: "2026-10-31", unit: "lb", history: [{ date: "2026-09-27", weight: 30 }, { date: "2026-10-03", weight: 30 }, { date: "2026-10-10", weight: 30 }, { date: "2026-10-17", weight: 30 }, { date: "2026-10-25", weight: 30 }, { date: "2026-10-31", weight: 30 }] },
+          { type: "rest", name: "Descanso", duration: 90 },
+          { id: 2, exerciseId: "remada-maquina-pegada-neutra", sets: 3, reps: "5", rest: 90, lastWeight: 57, lastWeightDate: "2026-10-31", unit: "kg", history: [{ date: "2026-09-27", weight: 50 }, { date: "2026-10-03", weight: 57 }, { date: "2026-10-10", weight: 57 }, { date: "2026-10-17", weight: 66 }, { date: "2026-10-25", weight: 57 }, { date: "2026-10-31", weight: 57 }] },
+          { type: "rest", name: "Descanso", duration: 90 },
+          { id: 3, exerciseId: "desenvolvimento-ombros-maquina", sets: 3, reps: "5", rest: 90, lastWeight: 11, lastWeightDate: "2026-10-31", unit: "kg", history: [{ date: "2026-09-27", weight: 11 }, { date: "2026-10-03", weight: 11 }, { date: "2026-10-10", weight: 11 }, { date: "2026-10-17", weight: 11 }, { date: "2026-10-25", weight: 11 }, { date: "2026-10-31", weight: 11 }] },
+          { type: "rest", name: "Descanso", duration: 90 },
+          { id: 4, exerciseId: "cadeira-flexora", sets: 3, reps: "5", rest: 90, lastWeight: 70, lastWeightDate: "2026-10-31", unit: "kg", history: [{ date: "2026-09-27", weight: 70 }, { date: "2026-10-03", weight: 70 }, { date: "2026-10-10", weight: 79 }, { date: "2026-10-17", weight: 70 }, { date: "2026-10-25", weight: 70 }, { date: "2026-10-31", weight: 70 }] },
+          { type: "rest", name: "Descanso", duration: 90 },
+          { id: 5, exerciseId: "abdominal-prancha-isometrica", sets: 3, reps: "60 segundos", rest: 60 },
+          { type: "rest", name: "Descanso", duration: 60 },
+          { id: 6, exerciseId: "abdominal-infra-paralelas-pernas-flexionadas", sets: 3, reps: "15", rest: 60 }
+        ],
+        status: { planned: true, trained: true, plannedDate: "2026-09-26", trainedDate: "2026-10-31", trainingCount: 6, comment: "" }
+      },
+      {
+        id: "B",
+        name: "Treino 2",
+        exercises: [
+          { id: 7, exerciseId: "supino-maquina-pegada-pronada", sets: 4, reps: "10", lastWeight: 18, lastWeightDate: "2026-10-27", unit: "kg", history: [{ date: "2026-09-29", weight: 18 }, { date: "2026-10-05", weight: 18 }, { date: "2026-10-13", weight: 18 }, { date: "2026-10-20", weight: 18 }, { date: "2026-10-27", weight: 18 }] },
+          { id: 8, exerciseId: "flexao-bracos", sets: 4, reps: "10", rest: 45 },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 9, exerciseId: "triceps-polia-barra-reta", sets: 4, reps: "10", lastWeight: 17, lastWeightDate: "2026-10-27", unit: "kg", history: [{ date: "2026-09-29", weight: 14.5 }, { date: "2026-10-05", weight: 17 }, { date: "2026-10-13", weight: 17 }, { date: "2026-10-20", weight: 17 }, { date: "2026-10-27", weight: 17 }] },
+          { id: 10, exerciseId: "triceps-frances-halteres", sets: 4, reps: "10", rest: 45, lastWeight: 20, lastWeightDate: "2026-10-27", unit: "lb", history: [{ date: "2026-09-29", weight: 20 }, { date: "2026-10-05", weight: 20 }, { date: "2026-10-13", weight: 20 }, { date: "2026-10-20", weight: 20 }, { date: "2026-10-27", weight: 20 }] },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 11, exerciseId: "elevacao-frontal-halteres", sets: 4, reps: "10", lastWeight: 10, lastWeightDate: "2026-10-27", unit: "lb", history: [{ date: "2026-09-29", weight: 10 }, { date: "2026-10-05", weight: 10 }, { date: "2026-10-13", weight: 10 }, { date: "2026-10-20", weight: 10 }, { date: "2026-10-27", weight: 10 }] },
+          { id: 12, exerciseId: "afundo-pliometrico", sets: 4, reps: "10", rest: 45, lastWeight: 10, lastWeightDate: "2026-10-27", unit: "lb", history: [{ date: "2026-10-05", weight: 10 }, { date: "2026-10-13", weight: 10 }, { date: "2026-10-20", weight: 10 }, { date: "2026-10-27", weight: 10 }] },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 13, exerciseId: "abducao-quadril-maquina", sets: 4, reps: "10", lastWeight: 36, lastWeightDate: "2026-10-27", unit: "kg", history: [{ date: "2026-10-05", weight: 27 }, { date: "2026-10-13", weight: 27 }, { date: "2026-10-20", weight: 32 }, { date: "2026-10-27", weight: 36 }] },
+          { id: 14, exerciseId: "agachamento-isometrico", sets: 4, reps: "60 segundos", rest: 45 },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 15, exerciseId: "aducao-quadril-maquina", sets: 4, reps: "10", lastWeight: 36, lastWeightDate: "2026-10-27", unit: "kg", history: [{ date: "2026-10-05", weight: 38 }, { date: "2026-10-13", weight: 38 }, { date: "2026-10-20", weight: 38 }, { date: "2026-10-27", weight: 36 }] },
+          { id: 16, exerciseId: "agachamento-sumo-halteres", sets: 4, reps: "10", rest: 45, lastWeight: 60, lastWeightDate: "2026-10-27", unit: "lb", history: [{ date: "2026-10-05", weight: 60 }, { date: "2026-10-13", weight: 60 }, { date: "2026-10-20", weight: 60 }, { date: "2026-10-27", weight: 60 }] },
+          { type: "rest", name: "Descanso", duration: 45 }
+        ],
+        status: { planned: true, trained: true, plannedDate: "2026-09-29", trainedDate: "2026-10-27", trainingCount: 5, comment: "" }
+      },
+      {
+        id: "C",
+        name: "Treino 3",
+        exercises: [
+          { id: 17, exerciseId: "puxada-articulada-aberta", sets: 4, reps: "10", lastWeight: 30, lastWeightDate: "2026-10-30", unit: "kg", history: [{ date: "2026-10-01", weight: 30 }, { date: "2026-10-08", weight: 30 }, { date: "2026-10-15", weight: 30 }, { date: "2026-10-30", weight: 30 }] },
+          { id: 18, exerciseId: "crucifixo-inverso-halteres", sets: 4, reps: "10", rest: 45, lastWeight: 15, lastWeightDate: "2026-10-30", unit: "lb", history: [{ date: "2026-10-01", weight: 15 }, { date: "2026-10-08", weight: 15 }, { date: "2026-10-15", weight: 15 }, { date: "2026-10-30", weight: 15 }] },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 19, exerciseId: "rosca-direta-polia-barra-reta", sets: 4, reps: "10", lastWeight: 12.5, lastWeightDate: "2026-10-30", unit: "kg", history: [{ date: "2026-10-01", weight: 8 }, { date: "2026-10-08", weight: 10 }, { date: "2026-10-15", weight: 10 }, { date: "2026-10-23", weight: 12.5 }, { date: "2026-10-30", weight: 12.5 }] },
+          { id: 20, exerciseId: "rosca-direta-isometrica-halteres", sets: 4, reps: "10", rest: 45, lastWeight: 10, lastWeightDate: "2026-10-30", unit: "lb", history: [{ date: "2026-10-01", weight: 10 }, { date: "2026-10-08", weight: 10 }, { date: "2026-10-15", weight: 10 }, { date: "2026-10-30", weight: 10 }] },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 21, exerciseId: "elevacao-lateral-halteres", sets: 4, reps: "10", lastWeight: 15, lastWeightDate: "2026-10-30", unit: "lb", history: [{ date: "2026-10-01", weight: 15 }, { date: "2026-10-08", weight: 15 }, { date: "2026-10-15", weight: 15 }, { date: "2026-10-30", weight: 15 }] },
+          { id: 22, exerciseId: "agachamento-com-salto", sets: 4, reps: "10", rest: 45, lastWeight: 15, lastWeightDate: "2026-10-30", unit: "lb", history: [{ date: "2026-10-01", weight: 15 }, { date: "2026-10-08", weight: 15 }, { date: "2026-10-15", weight: 15 }, { date: "2026-10-30", weight: 15 }] },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 23, exerciseId: "cadeira-extensora", sets: 4, reps: "10", lastWeight: 70, lastWeightDate: "2026-10-30", unit: "kg", history: [{ date: "2026-10-01", weight: 45 }, { date: "2026-10-08", weight: 45 }, { date: "2026-10-15", weight: 70 }, { date: "2026-10-30", weight: 70 }] },
+          { id: 24, exerciseId: "abdominal-obliquo-alternado-pedalada", sets: 4, reps: "15", rest: 45 },
+          { type: "rest", name: "Descanso", duration: 45 },
+          { id: 25, exerciseId: "leg-press-horizontal", sets: 4, reps: "10", lastWeight: 91, lastWeightDate: "2026-10-30", unit: "kg", history: [{ date: "2026-10-08", weight: 91 }, { date: "2026-10-15", weight: 91 }, { date: "2026-10-30", weight: 91 }] },
+          { id: 26, exerciseId: "abdominal-remador", sets: 4, reps: "20", rest: 45 },
+          { type: "rest", name: "Descanso", duration: 45 }
+        ],
+        status: { planned: true, trained: true, plannedDate: "2026-10-01", trainedDate: "2026-10-30", trainingCount: 4, comment: "" }
+      }
+    ]
   }
 ];

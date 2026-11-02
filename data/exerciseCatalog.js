@@ -113,7 +113,7 @@ window.EXERCISE_CATALOG = [
   { id: "crucifixo-inverso-banco-halteres", name: "Crucifixo Inverso no Banco com Halteres" },
   { id: "crucifixo-inverso-banco-inclinado", name: "Crucifixo Inverso no Banco Inclinado" },
   { id: "desenvolvimento-barra-reta-atras", name: "Desenvolvimento Barra Reta Atras" },
-  { id: "desenvolvimento-pe-halteres", name: "Desenvolvimento em Pe com Halteres" },
+  { id: "desenvolvimento-pe-halteres", name: "Desenvolvimento em Pé com Halteres" },
   { id: "elephant-fitball", name: "Elephant Fitball" },
   { id: "elevacao-fitball", name: "Elevação Fitball" },
   { id: "elevacao-frontal-isometrica-halteres", name: "Elevação Frontal Isometrica com Halteres" },
