@@ -1,4 +1,4 @@
-﻿window.DEFAULT_WORKOUTS_VERSION = 2026110202;
+﻿window.DEFAULT_WORKOUTS_VERSION = 2026110203;
 window.CURRENT_WORKOUT = {
   id: 1,
   name: "Treino Novembro-Dezembro 2026",
@@ -23,7 +23,7 @@ window.CURRENT_WORKOUT = {
         { type: "rest", name: "Descanso", duration: 0 },
         { id: 10, exerciseId: "agachamento-goblet-halter", sets: 4, reps: "8" },
         { type: "rest", name: "Descanso", duration: 90 },
-        { id: 11, exerciseId: "leg-press-45", sets: 4, reps: "8" },
+        { id: 11, exerciseId: "leg-press-horizontal", sets: 4, reps: "8" },
         { type: "rest", name: "Descanso", duration: 90 },
       ]
     },
