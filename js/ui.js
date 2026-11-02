@@ -305,7 +305,7 @@ const UI = (() => {
           <option value="kg"${unit === "kg" ? " selected" : ""}>kg</option>
           <option value="lb"${unit === "lb" ? " selected" : ""}>lb</option>
         </select>
-        <input class="weight-input" type="number" min="0" step="0.5" inputmode="decimal" placeholder="Novo peso">
+        <input class="weight-input" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Novo peso">
         <button class="save-button save-${dayId.toLowerCase()}" type="submit">Salvar</button>
       `;
 
