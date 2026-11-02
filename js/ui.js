@@ -195,7 +195,7 @@ const UI = (() => {
       if (exercise.type === "rest") {
         if (currentGroup.length) {
           groups.push({
-            conjugated: currentGroup.length >= 2,
+            conjugated: currentGroup.length >= 3,
             exercises: currentGroup
           });
           currentGroup = [];
@@ -208,7 +208,7 @@ const UI = (() => {
 
     if (currentGroup.length) {
       groups.push({
-        conjugated: currentGroup.length >= 2,
+        conjugated: currentGroup.length >= 3,
         exercises: currentGroup
       });
     }
@@ -242,7 +242,7 @@ const UI = (() => {
     const exerciseName = Workouts.getExerciseName(exercise);
     const restLabel = exercise.rest != null && exercise.rest !== "" ? ` · Descanso: ${exercise.rest} s` : "";
     const gym = Workouts.getWorkoutGym(workout);
-    const unit = Workouts.getExerciseUnit(exercise);
+    const unit = Workouts.getExerciseUnit(exercise, allWorkouts);
     const unitLabel = Workouts.getUnitLabel(unit);
     const stats = Workouts.getStats(exercise);
     const prCategories = Workouts.getPrCategories(exercise, allWorkouts, gym);

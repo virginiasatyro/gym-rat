@@ -38,9 +38,12 @@ const App = (() => {
     }
 
     const resolvedUnit = unit === "lb" ? "lb" : "kg";
-    const weightKg = Workouts.toStorageKg(weight, resolvedUnit);
+    // Preserve the user's selected unit for exported/imported historical data.
+    // Do not silently normalize lb values to kg on save; the value is already
+    // recorded in the unit the user chose and should remain stable.
+    const storedWeight = Workouts.toStorageKg(weight, resolvedUnit);
 
-    state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, weightKg);
+    state.workouts = Workouts.addWeight(state.workouts, workoutId, dayId, exerciseId, storedWeight);
     state.workouts = Workouts.setExerciseUnit(state.workouts, workoutId, dayId, exerciseId, resolvedUnit);
     Storage.save(state.workouts);
     render();

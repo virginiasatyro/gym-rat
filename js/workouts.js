@@ -347,8 +347,34 @@ const Workouts = (() => {
     return Math.round(value * 100) / 100;
   }
 
-  function getExerciseUnit(exercise) {
-    return exercise && exercise.unit === "lb" ? "lb" : "kg";
+  function getExerciseUnit(exercise, workouts = []) {
+    if (!exercise) return "kg";
+
+    if (exercise.unit === "lb" || exercise.unit === "kg") {
+      return exercise.unit;
+    }
+
+    const targetId = getStableExerciseId(exercise);
+    const targetName = normalizeName(getExerciseName(exercise));
+
+    for (const workout of Array.isArray(workouts) ? workouts : []) {
+      for (const day of workout.workouts || []) {
+        for (const candidate of day.exercises || []) {
+          if (candidate.type === "rest") continue;
+
+          const sameStableId = targetId && getStableExerciseId(candidate) === targetId;
+          const sameName = !targetId && normalizeName(getExerciseName(candidate)) === targetName;
+
+          if (sameStableId || sameName) {
+            if (candidate.unit === "lb" || candidate.unit === "kg") {
+              return candidate.unit;
+            }
+          }
+        }
+      }
+    }
+
+    return "kg";
   }
 
   function getUnitLabel(unit) {

@@ -211,6 +211,11 @@ assert.strictEqual(Workouts.getDisplayWeight(30, 'lb'), 30);
 assert.strictEqual(Workouts.formatDisplayWeight(30, 'lb'), '30');
 assert.strictEqual(Workouts.getExerciseUnit({ unit: 'lb' }), 'lb');
 assert.strictEqual(Workouts.getExerciseUnit({}), 'kg');
+assert.strictEqual(Workouts.getExerciseUnit({ exerciseId: 'supino-reto-halteres' }, [{
+  workouts: [{
+    exercises: [{ exerciseId: 'supino-reto-halteres', unit: 'lb', history: [{ date: '2026-10-31', weight: 30 }] }]
+  }]
+}]), 'lb');
 assert.strictEqual(Workouts.getUnitLabel('lb'), 'lb');
 
 const unitWorkouts = [{
