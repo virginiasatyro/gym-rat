@@ -1,4 +1,4 @@
-﻿window.DEFAULT_WORKOUTS_VERSION = 2026110203;
+﻿window.DEFAULT_WORKOUTS_VERSION = 2026110204;
 window.CURRENT_WORKOUT = {
   id: 1,
   name: "Treino Novembro-Dezembro 2026",
@@ -32,7 +32,7 @@ window.CURRENT_WORKOUT = {
       name: "Treino B",
       exercises: [
         { id: 12, exerciseId: "crucifixo-inverso-halteres", sets: 3, reps: "12", rest: 60 },
-        { id: 13, exerciseId: "barra-fixa-pegada-fechada", sets: 3, reps: "30", rest: 60 },
+        { id: 13, exerciseId: "puxada-articulada-aberta", sets: 3, reps: "30", rest: 60 },
         { id: 14, exerciseId: "alongamento-dorsal-posteriores", sets: 3, reps: "60 segundos", rest: 60 },
         { type: "rest", name: "Descanso", duration: 0 },
         { id: 15, exerciseId: "rosca-direta-polia-barra-reta", sets: 3, reps: "12", rest: 60 },
