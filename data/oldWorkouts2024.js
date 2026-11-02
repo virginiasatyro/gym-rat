@@ -303,7 +303,7 @@ window.OLD_WORKOUTS_2024 = [
           { id: 2, exerciseId: "barra-fixa-pegada-fechada", sets: 3, reps: "100", history: [{ date: "2024-02-01", weight: 45 }] },
           { id: 3, exerciseId: "alongamento-dorsal-iii", sets: 3, reps: "60 segundos" },
           { type: "rest", name: "Descanso", duration: 60 },
-          { id: 4, exerciseId: "rosca-direta-barra-reta", sets: 3, reps: "12", history: [{ date: "2024-02-01", weight: 5 }] },
+          { id: 4, exerciseId: "rosca-direta-polia-barra-reta", sets: 3, reps: "12", history: [{ date: "2024-02-01", weight: 5 }] },
           { id: 5, exerciseId: "rosca-inversa-barra-reta", sets: 3, reps: "100", history: [{ date: "2024-02-01", weight: 2.5 }] },
           { id: 6, exerciseId: "alongamento-punho-antebraco-i", sets: 3, reps: "30 segundos" },
           { type: "rest", name: "Descanso", duration: 60 },

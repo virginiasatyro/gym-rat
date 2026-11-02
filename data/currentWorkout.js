@@ -35,7 +35,7 @@ window.CURRENT_WORKOUT = {
         { id: 13, exerciseId: "barra-fixa-pegada-fechada", sets: 3, reps: "30", rest: 60 },
         { id: 14, exerciseId: "alongamento-dorsal-posteriores", sets: 3, reps: "60 segundos", rest: 60 },
         { type: "rest", name: "Descanso", duration: 0 },
-        { id: 15, exerciseId: "rosca-direta-barra-reta", sets: 3, reps: "12", rest: 60 },
+        { id: 15, exerciseId: "rosca-direta-polia-barra-reta", sets: 3, reps: "12", rest: 60 },
         { id: 16, exerciseId: "rosca-inversa-barra-reta", sets: 3, reps: "30", rest: 60 },
         { id: 17, exerciseId: "alongamento-punho-antebraco-i", sets: 3, reps: "60 segundos", rest: 60 },
         { type: "rest", name: "Descanso", duration: 0 },
