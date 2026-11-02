@@ -43,7 +43,7 @@ window.CURRENT_WORKOUT = {
         { id: 19, exerciseId: "abdominal-infra-pernas-estendidas-curto", sets: 3, reps: "20", rest: 60 },
         { id: 20, exerciseId: "mobilidade-ombro-x", sets: 3, reps: "60 segundos", rest: 60 },
         { type: "rest", name: "Descanso", duration: 0 },
-        { id: 21, exerciseId: "afundo-halteres-entre-steps", sets: 4, reps: "8", rest: 90 },
+        { id: 21, exerciseId: "afundo-halteres", sets: 4, reps: "8", rest: 90 },
         { type: "rest", name: "Descanso", duration: 90 },
         { id: 22, exerciseId: "cadeira-flexora", sets: 4, reps: "8", rest: 90 }
       ]

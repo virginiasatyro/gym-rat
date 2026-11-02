@@ -11,7 +11,7 @@ window.EXERCISE_CATALOG = [
   { id: "elevacao-y-polia", name: "Elevação Y na Polia" },
   { id: "agachamento-abducao-alternado", name: "Agachamento com Abdução Alternado" },
   { id: "crucifixo-inverso-faixa-elastica", name: "Crucifixo Inverso - Faixa Elástica" },
-  { id: "afundo-halteres-entre-steps", name: "Afundo com Halteres entre Steps" },
+  { id: "afundo-halteres", name: "Afundo com Halteres", aliases: ["Afundo com Halteres entre Steps", "afundo-halteres-entre-steps"] },
   { id: "remada-curvada-halteres-pegada-pronada", name: "Remada Curvada com Halteres (Pegada Pronada)" },
   { id: "afundo-unilateral-trx", name: "Afundo Unilateral TRX" },
   { id: "cadeira-extensora", name: "Cadeira Extensora" },

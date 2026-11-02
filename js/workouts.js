@@ -305,7 +305,19 @@ const Workouts = (() => {
   }
 
   function getStableExerciseId(exercise) {
-    if (exercise.exerciseId) return exercise.exerciseId;
+    if (exercise.exerciseId) {
+      const rawIdKey = normalizeName(exercise.exerciseId);
+      const mappedById = window.EXERCISE_CATALOG_BY_NAME?.[rawIdKey];
+      if (mappedById) {
+        return mappedById;
+      }
+
+      const catalogEntry = window.EXERCISE_CATALOG_BY_ID?.[exercise.exerciseId];
+      if (catalogEntry) {
+        return catalogEntry.id;
+      }
+    }
+
     return window.EXERCISE_CATALOG_BY_NAME?.[normalizeName(getExerciseName(exercise))] || null;
   }
 
