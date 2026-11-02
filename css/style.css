@@ -171,7 +171,7 @@ h2 {
 
 .day-tabs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 8px;
   margin-bottom: 16px;
 }
@@ -229,52 +229,24 @@ body.dark-theme .weekday.is-trained {
 }
 
 .day-tab {
+  --day-color: var(--accent);
   font-size: 1.05rem;
+  border-color: var(--day-color);
+  color: var(--day-color);
 }
 
-.day-a {
-  border-color: #c94444;
-  color: #9c2525;
-}
-
-.day-b {
-  border-color: #3577c9;
-  color: #225a9f;
-}
-
-.day-c {
-  border-color: #d9b32f;
-  color: #7a5c00;
-}
-
-body.dark-theme .day-a {
-  color: #ff8d8d;
-}
-
-body.dark-theme .day-b {
-  color: #87baff;
-}
-
-body.dark-theme .day-c {
-  color: #f1d86d;
-}
-
-.day-a.is-active {
-  border-color: #c94444;
-  background: #c94444;
+.day-tab.is-active {
+  border-color: var(--day-color);
+  background: var(--day-color);
   color: #ffffff;
 }
 
-.day-b.is-active {
-  border-color: #3577c9;
-  background: #3577c9;
-  color: #ffffff;
+body.dark-theme .day-tab {
+  color: var(--day-color);
 }
 
-.day-c.is-active {
-  border-color: #d9b32f;
-  background: #f0c735;
-  color: #2b2400;
+body.dark-theme .day-tab.is-active {
+  color: #ffffff;
 }
 
 .save-button,

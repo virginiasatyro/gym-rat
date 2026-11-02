@@ -23,12 +23,17 @@ const UI = (() => {
     const tabs = document.getElementById("day-tabs");
     tabs.innerHTML = "";
 
-    activeWorkout.workouts.forEach((day) => {
+    const palette = ["#c94444", "#3577c9", "#d9b32f", "#3D8D7A", "#9A5DBD", "#D97452"];
+
+    activeWorkout.workouts.forEach((day, index) => {
       const button = document.createElement("button");
+      const color = palette[index % palette.length];
       button.className = `day-tab day-${day.id.toLowerCase()}${day.id === selectedDayId ? " is-active" : ""}`;
       button.type = "button";
       button.textContent = day.id;
       button.setAttribute("aria-label", day.name);
+      button.style.setProperty("--day-color", color);
+      button.style.setProperty("--day-color-strong", color);
       button.addEventListener("click", () => actions.selectDay(day.id));
       tabs.appendChild(button);
     });
