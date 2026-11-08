@@ -305,7 +305,7 @@ const UI = (() => {
           <option value="kg"${unit === "kg" ? " selected" : ""}>kg</option>
           <option value="lb"${unit === "lb" ? " selected" : ""}>lb</option>
         </select>
-        <input class="weight-input" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Novo peso">
+        <input class="weight-input" type="text" inputmode="decimal" pattern="[0-9]+([.,][0-9]+)?" placeholder="Novo peso">
         <button class="save-button save-${dayId.toLowerCase()}" type="submit">Salvar</button>
       `;
 
@@ -313,7 +313,7 @@ const UI = (() => {
         event.preventDefault();
         const input = form.querySelector(".weight-input");
         const select = form.querySelector(".unit-select");
-        const value = Number(input.value);
+        const value = Workouts.normalizeDecimalInput(input.value);
         const selectedUnit = select ? select.value : "kg";
 
         if (!Number.isFinite(value) || value <= 0) {

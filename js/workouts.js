@@ -347,9 +347,43 @@ const Workouts = (() => {
     return total / numbers.length;
   }
 
+  function normalizeDecimalInput(value) {
+    if (value === null || value === undefined) return null;
+
+    const raw = String(value).trim().replace(/\s+/g, "");
+    if (!raw) return null;
+
+    const hasComma = raw.includes(",");
+    const hasDot = raw.includes(".");
+
+    if (hasComma && hasDot) {
+      const lastCommaIndex = raw.lastIndexOf(",");
+      const lastDotIndex = raw.lastIndexOf(".");
+      const decimalSeparator = lastCommaIndex > lastDotIndex ? "," : ".";
+      const thousandSeparator = decimalSeparator === "," ? "." : ",";
+      const normalized = raw.split(thousandSeparator).join("").replace(decimalSeparator, ".");
+      const number = Number(normalized);
+      return Number.isFinite(number) ? number : null;
+    }
+
+    if (hasComma) {
+      const number = Number(raw.replace(",", "."));
+      return Number.isFinite(number) ? number : null;
+    }
+
+    if (hasDot && /^\d{1,3}(\.\d{3})+$/.test(raw)) {
+      const number = Number(raw.replace(/\./g, ""));
+      return Number.isFinite(number) ? number : null;
+    }
+
+    const number = Number(raw);
+    return Number.isFinite(number) ? number : null;
+  }
+
   function formatWeight(weight) {
     const value = Number(weight);
-    return Number.isInteger(value) ? String(value) : value.toFixed(1);
+    if (!Number.isFinite(value)) return "";
+    return value.toString().replace(".", ",");
   }
 
   const KG_TO_LB = 2.2046226218;
@@ -476,6 +510,7 @@ const Workouts = (() => {
     markDayStatus,
     saveExerciseComment,
     setExerciseUnit,
+    normalizeDecimalInput,
     formatDisplayWeight,
     formatWeight,
     formatDate,
