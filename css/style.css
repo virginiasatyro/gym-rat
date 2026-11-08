@@ -170,10 +170,13 @@ h2 {
 }
 
 .day-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: flex;
   gap: 8px;
   margin-bottom: 16px;
+}
+
+.day-tab {
+  flex: 1 1 0;
 }
 
 /* Week bar above the day tabs: seven circle letters Mon → Sun */
@@ -733,7 +736,8 @@ body.dark-theme .trend-up {
   }
 
   .day-tabs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    gap: 8px;
   }
 
   .exercise-header {
