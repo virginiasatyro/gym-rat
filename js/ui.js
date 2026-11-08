@@ -200,7 +200,7 @@ const UI = (() => {
       if (exercise.type === "rest") {
         if (currentGroup.length) {
           groups.push({
-            conjugated: currentGroup.length >= 3,
+            conjugated: currentGroup.length >= 3 || currentGroup.some((item) => item.conjugated),
             exercises: currentGroup
           });
           currentGroup = [];
@@ -213,7 +213,7 @@ const UI = (() => {
 
     if (currentGroup.length) {
       groups.push({
-        conjugated: currentGroup.length >= 3,
+        conjugated: currentGroup.length >= 3 || currentGroup.some((item) => item.conjugated),
         exercises: currentGroup
       });
     }
